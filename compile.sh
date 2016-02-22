@@ -1,108 +1,83 @@
 #!/bin/bash
+set -e  # strict mode
 
-WWW_DIR="/var/www/downloads.openwisp.org/nnx-bas"
-ARCHS="ar71xx"
-REVISION=$(git describe --tags --always)
-JOBS=16
+show_help() {
+	echo "Compile openwrt based firmware;
 
-FEEDS="
-src-git packages https://github.com/openwrt/packages.git;for-15.05
-src-git luci https://github.com/openwrt/luci.git;for-15.05
-src-git-full oonf http://olsr.org/git/oonf.git
-src-git openwisp https://github.com/openwisp/openwisp-config.git
-src-git targets https://github.com/openwrt/targets.git
-"
+Usage: ./compile.sh [<OPTIONS>...]
 
-CONFIG="
-# CUSTOM NINUX
-CONFIG_IMAGEOPT=y
-CONFIG_VERSIONOPT=y
-CONFIG_VERSION_DIST="NINUX"
-CONFIG_VERSION_NICK=""
-CONFIG_VERSION_NUMBER=""
-CONFIG_VERSION_REPO="http://downloads.openwrt.org/chaos_calmer/15.05/%S/generic/packages"
-CONFIG_VERSION_MANUFACTURER=""
-CONFIG_VERSION_PRODUCT=""
-CONFIG_VERSION_HWREV=""
-CONFIG_VERSION_FILENAMES=y
-CONFIG_PACKAGE_ca-certificates=y
-CONFIG_PACKAGE_libpthread=y
-CONFIG_PACKAGE_librt=y
-CONFIG_PACKAGE_rpcd=y
-CONFIG_PACKAGE_kmod-crypto-aead=y
-CONFIG_PACKAGE_kmod-crypto-des=y
-CONFIG_PACKAGE_kmod-crypto-hash=y
-CONFIG_PACKAGE_kmod-crypto-manager=y
-CONFIG_PACKAGE_kmod-crypto-md5=y
-CONFIG_PACKAGE_kmod-crypto-pcompress=y
-CONFIG_PACKAGE_kmod-crypto-sha1=y
-CONFIG_PACKAGE_kmod-crypto-sha256=y
-CONFIG_PACKAGE_kmod-8021q=y
-CONFIG_PACKAGE_kmod-ipip=y
-CONFIG_PACKAGE_kmod-iptunnel=y
-CONFIG_PACKAGE_kmod-iptunnel4=y
-CONFIG_PACKAGE_kmod-tun=y
-CONFIG_PACKAGE_libiwinfo-lua=y
-CONFIG_PACKAGE_lua=y
-CONFIG_PACKAGE_libpolarssl=y
-CONFIG_PACKAGE_libcurl=y
-CONFIG_LIBCURL_FILE=y
-CONFIG_LIBCURL_FTP=y
-CONFIG_LIBCURL_HTTP=y
-CONFIG_LIBCURL_COOKIES=y
-CONFIG_LIBCURL_NO_SMB="!"
-CONFIG_LIBCURL_PROXY=y
-CONFIG_PACKAGE_liblua=y
-CONFIG_PACKAGE_liblzo=y
-CONFIG_PACKAGE_libubus-lua=y
-CONFIG_PACKAGE_libuci-lua=y
-CONFIG_PACKAGE_libustream-polarssl=y
-CONFIG_PACKAGE_luci=y
-CONFIG_PACKAGE_luci-ssl=y
-CONFIG_PACKAGE_luci-base=y
-CONFIG_PACKAGE_luci-mod-admin-full=y
-CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_luci-proto-ipv6=y
-CONFIG_PACKAGE_luci-proto-ppp=y
-CONFIG_PACKAGE_luci-lib-httpclient=y
-CONFIG_PACKAGE_luci-lib-ip=y
-CONFIG_PACKAGE_luci-lib-json=y
-CONFIG_PACKAGE_luci-lib-jsonc=y
-CONFIG_PACKAGE_luci-lib-luaneightbl=y
-CONFIG_PACKAGE_luci-lib-nixio=y
-CONFIG_PACKAGE_luci-lib-px5g=y
-CONFIG_PACKAGE_oonf-init-scripts=y
-CONFIG_PACKAGE_oonf-olsrd2=y
-CONFIG_PACKAGE_ip-full=y
-CONFIG_PACKAGE_openvpn-polarssl=y
-CONFIG_OPENVPN_polarssl_ENABLE_LZO=y
-CONFIG_OPENVPN_polarssl_ENABLE_SERVER=y
-CONFIG_OPENVPN_polarssl_ENABLE_HTTP=y
-CONFIG_OPENVPN_polarssl_ENABLE_SOCKS=y
-CONFIG_OPENVPN_polarssl_ENABLE_FRAGMENT=y
-CONFIG_OPENVPN_polarssl_ENABLE_MULTIHOME=y
-CONFIG_OPENVPN_polarssl_ENABLE_PORT_SHARE=y
-CONFIG_OPENVPN_polarssl_ENABLE_DEF_AUTH=y
-CONFIG_OPENVPN_polarssl_ENABLE_PF=y
-CONFIG_OPENVPN_polarssl_ENABLE_SMALL=y
-CONFIG_PACKAGE_uhttpd=y
-CONFIG_PACKAGE_uhttpd-mod-ubus=y
-CONFIG_PACKAGE_iperf3=y
-CONFIG_PACKAGE_ipip=y
-CONFIG_PACKAGE_iputils-ping=y
-CONFIG_PACKAGE_openwisp-config=y
-CONFIG_PACKAGE_px5g=y
-"
+OPTIONS:
 
-if [ -d openwrt ]; then
-	cd openwrt
-	git pull
+       -r | --release   OpenWRT release, defaults to 15.05;
+                        Use \"trunk\" to build the bleeding edge
+       -a | --archs     SoC architectures separated by space, defaults to 'ar71xx'
+       -w | -www        An optional directory where resulting binaries will be copied
+       -j | -jobs       Amount of parallel jobs during compilation, defaults to 1
+";
+}
+
+if [ -z "$1" ]; then
+	show_help
+	exit 1
 fi
 
-if [ ! -d openwrt ]; then
-	git clone git://git.openwrt.org/15.05/openwrt.git
-	cd openwrt
+# parse options
+while [ -n "$1" ]; do
+	case "$1" in
+		-r|--release) export RELEASE="$2"; shift;;
+		-a|--archs) export ARCHS="$2"; shift;;
+		-w|--www) export WWW_DIR="$2"; shift;;
+		-j|--jobs) export JOBS=$2; shift;;
+		-h|--help) show_help; exit 0; shift;;
+		-*)
+			echo "Invalid option: $1"
+			exit 1
+		;;
+		*) break;;
+	esac
+	shift;
+done
+
+RELEASE="${RELEASE:-15.05}"
+ARCHS="${ARCHS:-ar71xx}"
+JOBS=${JOBS:-1}
+REVISION=$(git describe --tags --always)
+
+if [[ "$RELEASE" == "trunk" ]]; then
+	OPENWRT_DIR="openwrt-trunk"
+	OPENWRT_GIT="git://git.openwrt.org/openwrt.git"
+	PACKAGES_BRANCH=""
+else
+	OPENWRT_DIR="openwrt-$RELEASE"
+	OPENWRT_GIT="git://git.openwrt.org/$RELEASE/openwrt.git"
+	PACKAGES_BRANCH="for-$RELEASE"
+fi
+
+DEFAULT_FEEDS="feeds.conf.default"
+CUSTOM_FEEDS="feeds.conf"
+DEFAULT_CONFIG=".config.default"
+CUSTOM_CONFIG=".config"
+
+if [ -f "$CUSTOM_FEEDS" ]; then
+	FEEDS=$(cat "$CUSTOM_FEEDS")
+else
+	FEEDS=$(cat "$DEFAULT_FEEDS")
+fi
+# replace <PACKAGES_BRANCH> with $PACKAGES_BRANCH
+FEEDS=$(echo "${FEEDS//<PACKAGES_BRANCH>/$PACKAGES_BRANCH}")
+
+if [ -f "$CUSTOM_CONFIG" ]; then
+	CONFIG=$(cat "$CUSTOM_CONFIG")
+else
+	CONFIG=$(cat "$DEFAULT_CONFIG")
+fi
+
+if [ -d $OPENWRT_DIR ]; then
+	cd $OPENWRT_DIR
+	git pull
+else
+	git clone $OPENWRT_GIT --depth 1 $OPENWRT_DIR
+	cd $OPENWRT_DIR
 fi
 
 # configure and update feeds
@@ -117,18 +92,25 @@ for arch in $ARCHS; do
 	make defconfig
 
 	# compile
-	make V= -j $JOBS
+	make -j $JOBS
 
-	# publish binaries
-	BUILD_DIR="$WWW_DIR/$REVISION/$arch"
-	mkdir -p $BUILD_DIR
-	cp -vr bin/$ARCHS/sha256sums $BUILD_DIR
-	cp .config $BUILD_DIR/Config.txt
-	cp -vr bin/$ARCHS/*.bin $BUILD_DIR && rm -rf bin/$ARCHS && rm -rf build_dir
+	if [ -n "$WWW_DIR" ]; then
+		# publish binaries
+		BUILD_DIR="$WWW_DIR/$REVISION/$arch"
+		mkdir -p $BUILD_DIR
+		echo "copying sha256sums to $BUILD_DIR"
+		cp -r bin/$arch/sha256sums $BUILD_DIR
+		echo "copying .config file to $BUILD_DIR/config.txt"
+		cp .config $BUILD_DIR/config.txt
+		echo "copying .config file to $BUILD_DIR/config.txt"
+		cp -r bin/$arch/*.bin $BUILD_DIR
+		echo "cleaning bin dir"
+		rm -rf ./bin/*
 
-	# update symbolic link to latest build
-	if [ -h "$WWW_DIR/latest" ]; then
-		rm "$WWW_DIR/latest"
+		# update symbolic link to latest build
+		if [ -h "$WWW_DIR/latest" ]; then
+			rm "$WWW_DIR/latest"
+		fi
+		ln -s "$WWW_DIR/$REVISION" "$WWW_DIR/latest"
 	fi
-	ln -s "$WWW_DIR/$REVISION" "$WWW_DIR/latest"
 done
