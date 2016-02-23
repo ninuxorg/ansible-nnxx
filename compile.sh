@@ -108,13 +108,13 @@ for arch in $ARCHS; do
 		# publish binaries
 		BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION/$arch"
 		mkdir -p $BUILD_DIR
-		echo "copying sha256sums to $BUILD_DIR"
+		echo "Copying sha256sums to $BUILD_DIR"
 		cp -r bin/$arch/sha256sums $BUILD_DIR
-		echo "copying .config file to $BUILD_DIR/config.txt"
+		echo "Copying .config file to $BUILD_DIR/config.txt"
 		cp .config $BUILD_DIR/config.txt
-		echo "copying .config file to $BUILD_DIR/config.txt"
+		echo "Copying .config file to $BUILD_DIR/config.txt"
 		cp -r bin/$arch/*.bin $BUILD_DIR
-		echo "cleaning bin dir"
+		echo "Cleaning bin dir"
 		rm -rf ./bin/*
 
 		# update symbolic link to latest build
