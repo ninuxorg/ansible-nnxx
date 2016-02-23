@@ -41,7 +41,6 @@ done
 RELEASE="${RELEASE:-15.05}"
 ARCHS="${ARCHS:-ar71xx}"
 JOBS=${JOBS:-1}
-REVISION=$(git describe --tags --always)
 
 if [[ "$RELEASE" == "trunk" ]]; then
 	OPENWRT_DIR="openwrt-trunk"
@@ -80,6 +79,8 @@ else
 	cd $OPENWRT_DIR
 fi
 
+REVISION=$(git describe --tags --always)
+
 # configure and update feeds
 echo "$FEEDS" > feeds.conf
 ./scripts/feeds update -a
@@ -96,7 +97,7 @@ for arch in $ARCHS; do
 
 	if [ -n "$WWW_DIR" ]; then
 		# publish binaries
-		BUILD_DIR="$WWW_DIR/$REVISION/$arch"
+		BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION/$arch"
 		mkdir -p $BUILD_DIR
 		echo "copying sha256sums to $BUILD_DIR"
 		cp -r bin/$arch/sha256sums $BUILD_DIR
