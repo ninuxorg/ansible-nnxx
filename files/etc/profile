@@ -1,3 +1,4 @@
+
 #!/bin/sh
 [ -f /etc/banner ] && cat /etc/banner
 
@@ -26,4 +27,5 @@ PS1="\[${C_BOLD_GREEN}\]\u\[${C_BOLD_WHITE}\]@\[${C_BOLD_RED}\]\h\[${C_BOLD_WHIT
 
 alias ll="ls -alF"
 
-alias olsrgraph="echo /netjsoninfo graph | nc 127.0.0.1 2009"
+alias netjsongraph="echo /netjsoninfo graph | nc 127.0.0.1 2009"
+alias restart-openwisp="/etc/init.d/openwisp_config restart; logread -f"
