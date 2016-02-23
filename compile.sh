@@ -118,9 +118,9 @@ for arch in $ARCHS; do
 		rm -rf ./bin/*
 
 		# update symbolic link to latest build
-		if [ -h "$WWW_DIR/latest" ]; then
-			rm "$WWW_DIR/latest"
+		if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
+			rm "$WWW_DIR/openwrt-$RELEASE/latest"
 		fi
-		ln -s "$WWW_DIR/$REVISION" "$WWW_DIR/latest"
+		ln -s "$WWW_DIR/openwrt-$RELEASE/$REVISION" "$WWW_DIR/openwrt-$RELEASE/latest"
 	fi
 done
