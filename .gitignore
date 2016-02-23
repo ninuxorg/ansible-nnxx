@@ -3,3 +3,4 @@ feeds.conf
 
 openwrt*/
 *.DS_Store
+packages/
