@@ -45,7 +45,7 @@ JOBS=${JOBS:-1}
 if [[ "$RELEASE" == "trunk" ]]; then
 	OPENWRT_DIR="openwrt-trunk"
 	OPENWRT_GIT="git://git.openwrt.org/openwrt.git"
-	PACKAGES_BRANCH=""
+	PACKAGES_BRANCH="master"
 else
 	OPENWRT_DIR="openwrt-$RELEASE"
 	OPENWRT_GIT="git://git.openwrt.org/$RELEASE/openwrt.git"
