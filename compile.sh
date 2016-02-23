@@ -86,6 +86,15 @@ echo "$FEEDS" > feeds.conf
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+echo "Setting up custom files"
+# cleanup files
+if [ -d files ]; then
+	rm -rf files
+fi
+# put custom files
+mkdir files
+cp -r ../files/* ./files
+
 for arch in $ARCHS; do
 	# configure
 	echo "CONFIG_TARGET_$arch=y" > .config
