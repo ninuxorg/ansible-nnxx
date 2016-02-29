@@ -103,24 +103,22 @@ for arch in $ARCHS; do
 
 	# compile
 	make -j $JOBS
-
-	if [ -n "$WWW_DIR" ]; then
-		# publish binaries
-		BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION/$arch"
-		mkdir -p $BUILD_DIR
-		echo "Copying sha256sums to $BUILD_DIR"
-		cp -r bin/$arch/sha256sums $BUILD_DIR
-		echo "Copying .config file to $BUILD_DIR/config.txt"
-		cp .config $BUILD_DIR/config.txt
-		echo "Copying .config file to $BUILD_DIR/config.txt"
-		cp -r bin/$arch/*.bin $BUILD_DIR
-		echo "Cleaning bin dir"
-		rm -rf ./bin/*
-
-		# update symbolic link to latest build
-		if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
-			rm "$WWW_DIR/openwrt-$RELEASE/latest"
-		fi
-		ln -s "$WWW_DIR/openwrt-$RELEASE/$REVISION" "$WWW_DIR/openwrt-$RELEASE/latest"
-	fi
 done
+
+if [ -n "$WWW_DIR" ]; then
+	# publish binaries
+	BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION"
+	mkdir -p $BUILD_DIR
+	echo "Copying ./bin contents to $BUILD_DIR"
+	cp -r bin/* $BUILD_DIR
+	echo "Copying .config file to $BUILD_DIR/config.txt"
+	cp .config $BUILD_DIR/config.txt
+	echo "Cleaning bin dir"
+	rm -rf ./bin/*
+
+	# update symbolic link to latest build
+	if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
+		rm "$WWW_DIR/openwrt-$RELEASE/latest"
+	fi
+	ln -s "$WWW_DIR/openwrt-$RELEASE/$REVISION" "$WWW_DIR/openwrt-$RELEASE/latest"
+fi
