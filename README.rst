@@ -1,6 +1,10 @@
 Firmware OpenWRT basilicata.ninux.org
 =====================================
 
+Installa i pacchetti necessari per compilare openwrt::
+
+    sudo apt-get install -y build-essential git libncurses5-dev zlib1g-dev unzip libssl-dev subversion
+
 Clona questo repository::
 
     git clone https://github.com/ninuxorg/openwrt-basilicata.git
