@@ -3,7 +3,7 @@ Firmware OpenWRT basilicata.ninux.org
 
 Installa i pacchetti necessari per compilare openwrt;
 
-Debian e derivate::
+Debian / Ubuntu e derivate::
 
     sudo apt-get install -y build-essential git libncurses5-dev zlib1g-dev unzip libssl-dev subversion
 
@@ -13,7 +13,7 @@ Fedora::
 
 CentOS / Red Hat Enterprise Linux / Scientific Linux::
 
-	yum -y install epel-release && yum -y group install buildsys-build && yum -y install git openssl-devel ncurses-devel subversion zlib-devel
+    yum -y install epel-release && yum -y group install buildsys-build && yum -y install git openssl-devel ncurses-devel subversion zlib-devel
 
 Clona questo repository::
 
