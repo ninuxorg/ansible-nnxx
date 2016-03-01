@@ -11,6 +11,10 @@ Fedora::
 
     dnf -y group install buildsys-build && dnf -y install git openssl-devel ncurses-devel subversion zlib-devel
 
+CentOS / Red Hat Enterprise Linux / Scientific Linux::
+
+	yum -y install epel-release && yum -y group install buildsys-build && yum -y install git openssl-devel ncurses-devel subversion zlib-devel
+
 Clona questo repository::
 
     git clone https://github.com/ninuxorg/openwrt-basilicata.git
