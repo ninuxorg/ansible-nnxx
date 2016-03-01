@@ -7,6 +7,9 @@ Debian e derivate::
 
     sudo apt-get install -y build-essential git libncurses5-dev zlib1g-dev unzip libssl-dev subversion
 
+Fedora::
+    dnf -y group install buildsys-build && dnf -y install git ncurses-devel openssl-devel subversion
+
 Clona questo repository::
 
     git clone https://github.com/ninuxorg/openwrt-basilicata.git
