@@ -11,8 +11,9 @@ OPTIONS:
        -r | --release   OpenWRT release, defaults to 15.05;
                         Use \"trunk\" to build the bleeding edge
        -a | --archs     SoC architectures separated by space, defaults to 'ar71xx'
-       -w | -www        An optional directory where resulting binaries will be copied
-       -j | -jobs       Amount of parallel jobs during compilation, defaults to 1
+       -w | --www       An optional directory where resulting binaries will be moved
+                        If omitted binaries won't be moved from the openwrt bin directory
+       -j | --jobs      Amount of parallel jobs during compilation, defaults to 1
 ";
 }
 
