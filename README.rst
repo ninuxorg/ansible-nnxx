@@ -8,6 +8,7 @@ Debian e derivate::
     sudo apt-get install -y build-essential git libncurses5-dev zlib1g-dev unzip libssl-dev subversion
 
 Fedora::
+
     dnf -y group install buildsys-build && dnf -y install git openssl-devel ncurses-devel subversion zlib-devel
 
 Clona questo repository::
