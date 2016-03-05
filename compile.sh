@@ -106,17 +106,19 @@ for arch in $ARCHS; do
 	make -j $JOBS
 done
 
+# publish binaries if -w|-www option is supplied
 if [ -n "$WWW_DIR" ]; then
-	# publish binaries
 	BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION"
+	if [ -d "$BUILD_DIR" ]; then
+		rm -rf $BUILD_DIR
+	fi
 	mkdir -p $BUILD_DIR
 	echo "Copying ./bin contents to $BUILD_DIR"
-	cp -r bin/* $BUILD_DIR
+	cp -fr bin/* $BUILD_DIR
 	echo "Copying .config file to $BUILD_DIR/config.txt"
 	cp .config $BUILD_DIR/config.txt
 	echo "Cleaning bin dir"
 	rm -rf ./bin/*
-
 	# update symbolic link to latest build
 	if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
 		rm "$WWW_DIR/openwrt-$RELEASE/latest"
