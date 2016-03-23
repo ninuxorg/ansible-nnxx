@@ -15,6 +15,7 @@ CONFIG_PACKAGE_iperf3=y
 CONFIG_PACKAGE_ipip=y
 CONFIG_PACKAGE_iputils-ping=y
 CONFIG_PACKAGE_ip-full=y
+CONFIG_PACKAGE_wget=y
 
 # busy box customizations
 CONFIG_BUSYBOX_CUSTOM=y
