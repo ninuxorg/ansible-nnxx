@@ -69,3 +69,8 @@ Dopo aver copiato le impostazioni di default basterà modificare i file:
 
 Questi due file sono presenti nel ``.gitignore``, per questo motivo le personalizzazioni
 non verranno incluse in eventuali cambiamenti della history del repository.
+
+Licenza
+-------
+
+I file presenti in questo repository possono essere considerati di dominio pubblico.
