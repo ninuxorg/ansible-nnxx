@@ -68,7 +68,7 @@ if [ -d $LEDE_DIR ]; then
 	cd $LEDE_DIR
 	git pull
 else
-	git clone $LEDE_GIT --depth 1 $LEDE_DIR
+	git clone $LEDE_GIT $LEDE_DIR
 	cd $LEDE_DIR
 fi
 
