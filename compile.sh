@@ -2,17 +2,16 @@
 set -e  # strict mode
 
 show_help() {
-	echo "Compile openwrt based firmware;
+	echo "Compile lede based nnxx firmware;
 
 Usage: ./compile.sh [<OPTIONS>...]
 
 OPTIONS:
 
-       -r | --release   OpenWRT release, defaults to 15.05;
-                        Use \"trunk\" to build the bleeding edge
        -a | --archs     SoC architectures separated by space, defaults to 'ar71xx'
+       -r | --release   optional LEDE release; if omitted will build latest master branch
        -w | --www       An optional directory where resulting binaries will be moved
-                        If omitted binaries won't be moved from the openwrt bin directory
+                        If omitted binaries won't be moved from the LEDE bin directory
        -j | --jobs      Amount of parallel jobs during compilation, defaults to 1
 ";
 }
@@ -25,7 +24,6 @@ fi
 # parse options
 while [ -n "$1" ]; do
 	case "$1" in
-		-r|--release) export RELEASE="$2"; shift;;
 		-a|--archs) export ARCHS="$2"; shift;;
 		-w|--www) export WWW_DIR="$2"; shift;;
 		-j|--jobs) export JOBS=$2; shift;;
@@ -39,19 +37,13 @@ while [ -n "$1" ]; do
 	shift;
 done
 
-RELEASE="${RELEASE:-15.05}"
+RELEASE="${RELEASE:-master}"
 ARCHS="${ARCHS:-ar71xx}"
 JOBS=${JOBS:-1}
 
-if [[ "$RELEASE" == "trunk" ]]; then
-	OPENWRT_DIR="openwrt-trunk"
-	OPENWRT_GIT="git://git.openwrt.org/openwrt.git"
-	PACKAGES_BRANCH="master"
-else
-	OPENWRT_DIR="openwrt-$RELEASE"
-	OPENWRT_GIT="git://git.openwrt.org/$RELEASE/openwrt.git"
-	PACKAGES_BRANCH="for-$RELEASE"
-fi
+LEDE_DIR="lede"
+LEDE_GIT="http://git.lede-project.org/source.git"
+PACKAGES_BRANCH="master"
 
 DEFAULT_FEEDS="feeds.conf.default"
 CUSTOM_FEEDS="feeds.conf"
@@ -72,12 +64,16 @@ else
 	CONFIG=$(cat "$DEFAULT_CONFIG")
 fi
 
-if [ -d $OPENWRT_DIR ]; then
-	cd $OPENWRT_DIR
+if [ -d $LEDE_DIR ]; then
+	cd $LEDE_DIR
 	git pull
 else
-	git clone $OPENWRT_GIT --depth 1 $OPENWRT_DIR
-	cd $OPENWRT_DIR
+	git clone $LEDE_GIT --depth 1 $LEDE_DIR
+	cd $LEDE_DIR
+fi
+
+if [[ "$RELEASE" != "master" ]]; then
+    git reset --hard $RELEASE
 fi
 
 REVISION=$(git describe --tags --always)
@@ -108,7 +104,7 @@ done
 
 # publish binaries if -w|-www option is supplied
 if [ -n "$WWW_DIR" ]; then
-	BUILD_DIR="$WWW_DIR/openwrt-$RELEASE/$REVISION"
+	BUILD_DIR="$WWW_DIR/lede-$RELEASE/$REVISION"
 	if [ -d "$BUILD_DIR" ]; then
 		rm -rf $BUILD_DIR
 	fi
@@ -120,8 +116,8 @@ if [ -n "$WWW_DIR" ]; then
 	echo "Cleaning bin dir"
 	rm -rf ./bin/*
 	# update symbolic link to latest build
-	if [ -h "$WWW_DIR/openwrt-$RELEASE/latest" ]; then
-		rm "$WWW_DIR/openwrt-$RELEASE/latest"
+	if [ -h "$WWW_DIR/lede-$RELEASE/latest" ]; then
+		rm "$WWW_DIR/lede-$RELEASE/latest"
 	fi
-	ln -s "$WWW_DIR/openwrt-$RELEASE/$REVISION" "$WWW_DIR/openwrt-$RELEASE/latest"
+	ln -s "$WWW_DIR/lede-$RELEASE/$REVISION" "$WWW_DIR/lede-$RELEASE/latest"
 fi
