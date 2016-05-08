@@ -22,7 +22,7 @@ Il firmware è basato su `LEDE <https://www.lede-project.org/>`_ ed i seguenti p
 - openwisp-config
 
 I pacchetti ed i feed sono personalizzabili in caso di necessità, per maggiori
-informazioni vedere `LEDE <#personalizzazione-feed-e-pacchetti-abilitati>`_.
+informazioni vedere `Personalizzazione feed e pacchetti abilitati <#personalizzazione-feed-e-pacchetti-abilitati>`_.
 
 Come si compila
 ---------------
