@@ -6,7 +6,7 @@ NNXX firmware
    :depth: 3
 
 Introduzione
-============
+------------
 
 Questo repository contiene degli script che aiutano a compilare il firmware
 utilizzato sulle isole che stanno partecipando a `NNXX (Ninux Experimental) <http://wiki.ninux.org/nnxx>`_.
@@ -22,7 +22,7 @@ I pacchetti ed i feed sono personalizzabili in caso di necessità, per maggiori
 informazioni vedere `LEDE <#personalizzazione-feed-e-pacchetti-abilitati>`_.
 
 Come si compila
-===============
+---------------
 
 Installa i pacchetti necessari per compilare `LEDE <https://www.lede-project.org/>`_;
 
@@ -51,7 +51,7 @@ Consulta le opzioni disponibili::
     ./compile --help
 
 Personalizzazione feed e pacchetti abilitati
-============================================
+--------------------------------------------
 
 E' possibile personalizzare i pacchetti ed i feed abilitati di default in
 questo modo::
