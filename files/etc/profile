@@ -27,5 +27,6 @@ PS1="\[${C_BOLD_GREEN}\]\u\[${C_BOLD_WHITE}\]@\[${C_BOLD_RED}\]\h\[${C_BOLD_WHIT
 
 alias ll="ls -alF"
 
-alias netjsongraph="echo /netjsoninfo graph | nc 127.0.0.1 2009"
-alias restart-openwisp="/etc/init.d/openwisp_config restart; logread -f"
+alias netjsongraphv4="echo /netjsoninfo filter graph ipv4_0 | nc 127.0.0.1 2009"
+alias netjsongraphv6="echo /netjsoninfo filter graph ipv6_0 | nc 127.0.0.1 2009"
+alias restart-openwisp="rm /tmp/openwisp/checksum; /etc/init.d/openwisp_config restart; logread -f"
