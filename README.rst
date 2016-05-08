@@ -1,6 +1,9 @@
 NNXX firmware
 =============
 
+.. image:: https://raw.githubusercontent.com/ninuxorg/nnxx-firmware/master/docs/nnxx.png
+   :target: http://wiki.ninux.org/nnxx
+
 .. contents:: **Table of Contents**:
    :backlinks: none
    :depth: 3
