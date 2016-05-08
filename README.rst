@@ -1,7 +1,30 @@
-Firmware OpenWRT basilicata.ninux.org
-=====================================
+NNXX firmware
+=============
 
-Installa i pacchetti necessari per compilare openwrt;
+.. contents:: **Table of Contents**:
+   :backlinks: none
+   :depth: 3
+
+Introduzione
+============
+
+Questo repository contiene degli script che aiutano a compilare il firmware
+utilizzato sulle isole che stanno partecipando a `NNXX (Ninux Experimental) <http://wiki.ninux.org/nnxx>`_.
+
+Il firmware è basato su `LEDE <https://www.lede-project.org/>`_ ed i seguenti pacchetti:
+
+- olsrd2
+- luci-ssl
+- openvpn
+- openwisp-config
+
+I pacchetti ed i feed sono personalizzabili in caso di necessità, per maggiori
+informazioni vedere `LEDE <#personalizzazione-feed-e-pacchetti-abilitati>`_.
+
+Come si compila
+===============
+
+Installa i pacchetti necessari per compilare `LEDE <https://www.lede-project.org/>`_;
 
 Debian / Ubuntu e derivate::
 
@@ -17,21 +40,21 @@ CentOS / Red Hat Enterprise Linux / Scientific Linux::
 
 Clona questo repository::
 
-    git clone https://github.com/ninuxorg/openwrt-basilicata.git
+    git clone https://github.com/ninuxorg/nnxx-firmware.git
 
 Lancia la compilazione, ad esempio::
 
-    ./compile.sh -j 16 --www "/var/www" --archs "ar71xx rampis" --release 15.05
+    ./compile.sh --archs "ar71xx rampis" -j 16
 
 Consulta le opzioni disponibili::
 
     ./compile --help
 
-Personalizzare i pacchetti
-==========================
+Personalizzazione feed e pacchetti abilitati
+============================================
 
-E' possibile personalizzare i pacchetti selezionati di default
-copiando i seguenti file::
+E' possibile personalizzare i pacchetti ed i feed abilitati di default in
+questo modo::
 
     cp .config.default .config
     cp feeds.conf.default feeds.conf
@@ -40,3 +63,6 @@ Dopo aver copiato le impostazioni di default basterà modificare i file:
 
 * ``.config``
 * ``feeds.conf``
+
+Questi due file sono presenti nel ``.gitignore``, per questo motivo le personalizzazioni
+non verranno incluse in eventuali cambiamenti della history del repository.
