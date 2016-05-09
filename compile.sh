@@ -96,7 +96,7 @@ mkdir files
 cp -r ../files/* ./files
 # use profile if defined
 if [ -n "$PROFILE" ] && [ -d "../$PROFILE" ]; then
-    cp -r "../$PROFILE" ./files
+    cp -r ../$PROFILE/* ./files
 fi
 
 for arch in $ARCHS; do
