@@ -9,7 +9,8 @@ Usage: ./compile.sh [<OPTIONS>...]
 OPTIONS:
 
        -a | --archs     SoC architectures separated by space, defaults to 'ar71xx'
-       -r | --release   optional LEDE release; if omitted will build latest master branch
+       -r | --release   Optional LEDE release; if omitted will build latest master branch
+       -p | --profile   Optional customizations for specific ninux communities, eg: basilicata, palermo, campania
        -w | --www       An optional directory where resulting binaries will be moved
                         If omitted binaries won't be moved from the LEDE bin directory
        -j | --jobs      Amount of parallel jobs during compilation, defaults to 1
@@ -25,6 +26,8 @@ fi
 while [ -n "$1" ]; do
 	case "$1" in
 		-a|--archs) export ARCHS="$2"; shift;;
+		-r|--release) export RELEASE="$2"; shift;;
+		-r|--profile) export PROFILE="$2"; shift;;
 		-w|--www) export WWW_DIR="$2"; shift;;
 		-j|--jobs) export JOBS=$2; shift;;
 		-h|--help) show_help; exit 0; shift;;
@@ -91,6 +94,10 @@ fi
 # put custom files
 mkdir files
 cp -r ../files/* ./files
+# use profile if defined
+if [ -n "$PROFILE" ] && [ -d "../$PROFILE" ]; then
+    cp -r "../$PROFILE" ./files
+fi
 
 for arch in $ARCHS; do
 	# configure
