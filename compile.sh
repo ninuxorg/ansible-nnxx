@@ -27,7 +27,7 @@ while [ -n "$1" ]; do
 	case "$1" in
 		-a|--archs) export ARCHS="$2"; shift;;
 		-r|--release) export RELEASE="$2"; shift;;
-		-r|--profile) export PROFILE="$2"; shift;;
+		-p|--profile) export PROFILE="$2"; shift;;
 		-w|--www) export WWW_DIR="$2"; shift;;
 		-j|--jobs) export JOBS=$2; shift;;
 		-h|--help) show_help; exit 0; shift;;
