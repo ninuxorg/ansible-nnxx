@@ -2,6 +2,7 @@
 feeds.conf
 
 openwrt*/
+lede*/
 *.DS_Store
 packages/
 *.komodoproject
