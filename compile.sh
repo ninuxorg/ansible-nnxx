@@ -106,6 +106,7 @@ for arch in $ARCHS; do
 	make defconfig
 
 	# compile
+	echo "compiling for $arch"
 	make -j $JOBS
 done
 
