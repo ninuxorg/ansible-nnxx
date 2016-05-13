@@ -107,7 +107,12 @@ for arch in $ARCHS; do
 
 	# compile
 	echo "compiling for $arch"
-	make -j $JOBS
+	if [ -n "$WWW_DIR" ]; then
+		rm -rf BUILD_LOG_DIR=$WWW_DIR/logs
+		make -j $JOBS BUILD_LOG=1 BUILD_LOG_DIR=$WWW_DIR/logs
+	else
+		make -j $JOBS BUILD_LOG=1
+	fi
 done
 
 # publish binaries if -w|-www option is supplied
