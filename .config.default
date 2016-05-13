@@ -5,7 +5,10 @@ CONFIG_PACKAGE_openwisp-config=y
 CONFIG_PACKAGE_openvpn-polarssl=y
 
 # olsrd2
-CONFIG_PACKAGE_oonf-olsrd2-git=y
+CONFIG_PACKAGE_oonf-olsrd2=y
+CONFIG_OONF_NHDP_AUTOLL4=y
+CONFIG_OONF_OLSRV2_LAN_IMPORT=y
+CONFIG_OONF_GENERIC_DLEP_ROUTER=y
 
 # luci SSL
 CONFIG_PACKAGE_luci-ssl=y
@@ -27,5 +30,5 @@ CONFIG_BUSYBOX_CONFIG_FEATURE_VI_UNDO=y
 CONFIG_BUSYBOX_CONFIG_WATCH=y
 
 # avoid wrong feeds in /etc/opkg/distfeeds.conf
-# CONFIG_FEED_oonf is not set
+# CONFIG_FEED_routing is not set
 # CONFIG_FEED_openwisp is not set
