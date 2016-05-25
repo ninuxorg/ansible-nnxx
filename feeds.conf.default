@@ -4,6 +4,6 @@
 
 src-git packages https://github.com/openwrt/packages.git;<PACKAGES_BRANCH>
 src-git luci https://github.com/openwrt/luci.git;<PACKAGES_BRANCH>
-src-git routing https://github.com/HRogge/packages.git
+src-git routing https://github.com/HRogge/packages.git;nnxx-for-master
 src-git openwisp https://github.com/openwisp/openwisp-config.git
 src-git targets https://github.com/openwrt/targets.git
