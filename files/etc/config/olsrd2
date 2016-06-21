@@ -1,0 +1,9 @@
+config global 'global'
+	option failfast 'no'
+	option lockfile '/var/lock/olsrd2'
+	option pidfile '/var/run/olsrd2.pid'
+
+config log 'log'
+	option file '/var/log/olsrd2.log'
+	option stderr 'true'
+	option syslog 'true'
