@@ -1,5 +1,5 @@
 # openwisp-config
-CONFIG_PACKAGE_openwisp-config=y
+CONFIG_PACKAGE_openwisp-config-polarssl=y
 
 # openvpn
 CONFIG_PACKAGE_openvpn-polarssl=y
