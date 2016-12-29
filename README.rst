@@ -1,5 +1,5 @@
-NNXX firmware
-=============
+NNXX ansible configurations
+===========================
 
 .. image:: https://raw.githubusercontent.com/ninuxorg/nnxx-firmware/master/docs/nnxx.png
    :target: http://wiki.ninux.org/nnxx
@@ -8,69 +8,57 @@ NNXX firmware
    :backlinks: none
    :depth: 3
 
-Introduzione
-------------
+Introduction
+============
 
-Questo repository contiene degli script che aiutano a compilare il firmware
-utilizzato sulle isole che stanno partecipando a `NNXX (Ninux Experimental) <http://wiki.ninux.org/nnxx>`_.
+This repository contains the ansible configurations of the various components that are being used
+in the `NNXX (Ninux Experimental) <http://wiki.ninux.org/nnxx>`_ infrastructure (ninux experimental).
 
-Il firmware è basato su `LEDE <https://www.lede-project.org/>`_ ed i seguenti pacchetti:
+Firmware
+========
+
+The firmware is based on `OpenWRT <https://openwrt.org/>`_ and the following additional software:
 
 - olsrd2
 - luci-ssl
 - openvpn
 - openwisp-config
 
-I pacchetti ed i feed sono personalizzabili in caso di necessità, per maggiori
-informazioni vedere `Personalizzazione feed e pacchetti abilitati <#personalizzazione-feed-e-pacchetti-abilitati>`_.
+The firmware images are managed via `ansible-openwisp2-imagegenerator
+<https://github.com/openwisp/ansible-openwisp2-imagegenerator>`_, an ansible role that allows
+to build several openwrt firmware images for different organizations while keeping track of their configurations
+(for more information regarding the process, see the project's README).
 
-Come si compila
----------------
+Compiling
+---------
 
-Installa i pacchetti necessari per compilare `LEDE <https://www.lede-project.org/>`_;
+**Note**: please take some time to read about the `build process of ansible-openwisp2-imagegenerator
+<https://github.com/openwisp/ansible-openwisp2-imagegenerator#build-process>`_.
 
-Debian / Ubuntu e derivate::
+In order to compile the firmware, you need to have access to one of the hosts listed in the `hosts
+<https://github.com/ninuxorg/ansible-nnxx/blob/master/hosts>`_, preferably via an SSH key installed on the server.
 
-    sudo apt-get install -y build-essential git libncurses5-dev zlib1g-dev unzip libssl-dev subversion
+Recompile the image builders and build all the images::
 
-Fedora::
+    ansible-playbook -i hosts firmware.yml -e "recompile=1 cores=4"
 
-    dnf -y group install buildsys-build && dnf -y install git openssl-devel ncurses-devel subversion zlib-devel
+After the first compilation, you can avoid recompiling again by running::
 
-CentOS / Red Hat Enterprise Linux / Scientific Linux::
+    ansible-playbook -i hosts firmware.yml
 
-    yum -y install epel-release && yum -y group install buildsys-build && yum -y install git openssl-devel ncurses-devel subversion zlib-devel
+Run only the building step by using the specific tag::
 
-Clona questo repository::
+    ansible-playbook -i hosts firmware.yml -t build
 
-    git clone https://github.com/ninuxorg/nnxx-firmware.git
+Compiling on a private host
+---------------------------
 
-Lancia la compilazione, ad esempio::
+To compile on a different host than the ones specified in the `hosts
+<https://github.com/ninuxorg/ansible-nnxx/blob/master/hosts>`_ file, create a ``private_hosts`` file::
 
-    ./compile.sh --archs "ar71xx rampis" -j 16
+    [my_private_host]
+    my.project.org ansible_user=user ansible_port=22
 
-Consulta le opzioni disponibili::
+Now run::
 
-    ./compile --help
-
-Personalizzazione feed e pacchetti abilitati
---------------------------------------------
-
-E' possibile personalizzare i pacchetti ed i feed abilitati di default in
-questo modo::
-
-    cp .config.default .config
-    cp feeds.conf.default feeds.conf
-
-Dopo aver copiato le impostazioni di default basterà modificare i file:
-
-* ``.config``
-* ``feeds.conf``
-
-Questi due file sono presenti nel ``.gitignore``, per questo motivo le personalizzazioni
-non verranno incluse in eventuali cambiamenti della history del repository.
-
-Licenza
--------
-
-I file presenti in questo repository possono essere considerati di dominio pubblico.
+    ansible-playbook -i private_hosts firmware.yml -e "recompile=1 cores=4"

@@ -6,3 +6,6 @@ lede*/
 *.DS_Store
 packages/
 *.komodoproject
+private_hosts
+*.retry
+.komodotools
