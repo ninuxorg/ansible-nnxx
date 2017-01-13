@@ -81,7 +81,6 @@
         - libustream-{{ openwisp2fw_ssl_lib }}
         - openvpn-{{ openwisp2fw_ssl_lib }}
         - openwisp-config-{{ openwisp2fw_ssl_lib }}
-        - oonf-olsrd2
     # packages used in the full flavour
     nnxx_full_packages:
         - iputils-ping
@@ -99,17 +98,19 @@
         - kmod-usb-storage-extras
         - kmod-ipip
         - luci-ssl
+    olsrd2_packages:
+        - oonf-olsrd2
     # definition of available flavours
     openwisp2fw_image_flavours:
-        full:
+        full_olsrd2:
           ar71xx:
             profile: Default
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages }}"
+            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     # definition of organizations
     openwisp2fw_organizations:
         - name: basilicata
           flavours:
-            - full
+            - full_olsrd2
           openwisp:
             url: https://controller.basilicata.ninux.org
             shared_secret: Secretn1nuxB4s
