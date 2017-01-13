@@ -55,6 +55,15 @@
         - kmod-usb-storage
         - kmod-usb-storage-extras
         - kmod-ipip
+        # olsrd1 specifc, used by Palermo
+        - olsrd
+        - olsrd-mod-nameservice
+        - olsrd-mod-arprefresh
+        - olsrd-mod-dyn-gw
+        - olsrd-mod-txtinfo
+        - olsrd-mod-jsoninfo
+        - luci-lib-json
+        - luci-app-olsr
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -100,12 +109,25 @@
         - luci-ssl
     olsrd2_packages:
         - oonf-olsrd2
+    olsrd1_packages:
+        - olsrd
+        - olsrd-mod-nameservice
+        - olsrd-mod-arprefresh
+        - olsrd-mod-dyn-gw
+        - olsrd-mod-txtinfo
+        - olsrd-mod-jsoninfo
+        - luci-lib-json
+        - luci-app-olsr
     # definition of available flavours
     openwisp2fw_image_flavours:
         full_olsrd2:
           ar71xx:
             profile: Default
             packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+        full_olsrd1:
+          ar71xx:
+            profile: Default
+            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages }}"
     # definition of organizations
     openwisp2fw_organizations:
         - name: basilicata
