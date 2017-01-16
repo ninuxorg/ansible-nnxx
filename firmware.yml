@@ -7,8 +7,8 @@
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
     openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
-    # Designated Driver (unreleased) - 27 December 2016
-    openwisp2fw_source_version: 187ad058ee1f21b1d78ff86fe2fc42459f10457b
+    # Designated Driver (unreleased) - Jan 12, 2017
+    openwisp2fw_source_version: ef4ebc509b32d231e800e3d00010c2c2e71483b8
     openwisp2fw_source_archs:
         - ar71xx
     openwisp2fw_source_feeds:
