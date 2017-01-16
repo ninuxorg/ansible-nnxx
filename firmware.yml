@@ -19,7 +19,7 @@
         - method: src-git
           name: luci
           location: https://github.com/openwrt/luci.git
-          branch: for-15.05
+          branch: master
         - method: src-git
           name: targets
           location: https://github.com/openwrt/targets.git
