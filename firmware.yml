@@ -44,6 +44,7 @@
         - wget
         - partx-utils
         - oonf-olsrd2
+        - luci
         - luci-ssl
         - iputils-ping
         - ip-full
@@ -86,8 +87,6 @@
         - wpad
         - uhttpd
         - uhttpd-mod-ubus
-        - px5g
-        - libustream-{{ openwisp2fw_ssl_lib }}
         - openvpn-{{ openwisp2fw_ssl_lib }}
         - openwisp-config-{{ openwisp2fw_ssl_lib }}
     # packages used in the full flavour
@@ -106,7 +105,12 @@
         - kmod-usb-storage
         - kmod-usb-storage-extras
         - kmod-ipip
+        - libustream-{{ openwisp2fw_ssl_lib }}
+        - px5g
         - luci-ssl
+    # packages used in the nossl flavour
+    nnxx_nossl_packages:
+        - luci
     olsrd2_packages:
         - oonf-olsrd2
     olsrd1_packages:
@@ -127,7 +131,11 @@
         full_olsrd1:
           ar71xx:
             profile: Default
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages }}"
+            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
+        nossl_olsrd1:
+          ar71xx:
+            profile: Default
+            packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
     # definition of organizations
     openwisp2fw_organizations:
         - name: basilicata
@@ -141,6 +149,7 @@
         - name: palermo
           flavours:
             - full_olsrd1
+            - nossl_olsrd1
           openwisp:
             url: https://controller.basilicata.ninux.org
             shared_secret: Secretn1nuxB4s
