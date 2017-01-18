@@ -1,0 +1,21 @@
+#!/bin/sh
+uci batch <<-EOF
+    # mesh
+    set wireless.wifi_ninux='wifi-iface'
+    set wireless.wifi_ninux.device=radio0
+    set wireless.wifi_ninux.ifname=ninux
+    set wireless.wifi_ninux.encryption=none
+    set wireless.wifi_ninux.mode=adhoc
+    set wireless.wifi_ninux.network=ninux
+    set wireless.wifi_ninux.ssid=ninux.org
+    # access point
+    set wireless.wifi_wlan0='wifi-iface'
+    set wireless.wifi_wlan0.device=radio0
+    set wireless.wifi_wlan0.ifname=wlan0
+    set wireless.wifi_wlan0.encryption=none
+    set wireless.wifi_wlan0.mode=ap
+    set wireless.wifi_wlan0.network=lan
+    set wireless.wifi_wlan0.ssid=www.ninux.org-palermo
+	commit wireless
+EOF
+exit 0
