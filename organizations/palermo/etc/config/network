@@ -1,0 +1,3 @@
+config interface 'ninux'
+	option ifname 'ninux'
+	option proto 'none'
