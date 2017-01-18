@@ -1,0 +1,4 @@
+config Interface
+	option ignore '0'
+	option interface 'ninux'
+	option Mode 'mesh'
