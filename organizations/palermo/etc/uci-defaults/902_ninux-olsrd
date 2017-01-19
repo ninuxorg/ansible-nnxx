@@ -5,6 +5,6 @@ uci batch <<-EOF
     set olsrd.ninux.ignore=0
     set olsrd.ninux.interface='ninux'
     set olsrd.ninux.Mode=mesh
-	commit olsrd
+    commit olsrd
 EOF
 exit 0
