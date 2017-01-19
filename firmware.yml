@@ -7,19 +7,18 @@
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
     openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
-    # Designated Driver (unreleased) - Jan 12, 2017
-    openwisp2fw_source_version: ef4ebc509b32d231e800e3d00010c2c2e71483b8
+    openwisp2fw_source_version: chaos_calmer
     openwisp2fw_source_archs:
         - ar71xx
     openwisp2fw_source_feeds:
         - method: src-git
           name: packages
           location: https://github.com/openwrt/packages.git
-          branch: master
+          branch: for-15.05
         - method: src-git
           name: luci
           location: https://github.com/openwrt/luci.git
-          branch: master
+          branch: for-15.05
         - method: src-git
           name: targets
           location: https://github.com/openwrt/targets.git
@@ -27,7 +26,7 @@
         - method: src-git
           name: routing
           location: https://github.com/openwrt-routing/packages.git
-          branch: master
+          branch: for-15.05
         - method: src-git
           name: openwisp
           location: https://github.com/openwisp/openwisp-config.git
