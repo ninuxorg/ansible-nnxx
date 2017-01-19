@@ -5,6 +5,10 @@ uci batch <<-EOF
     set olsrd.ninux.ignore=0
     set olsrd.ninux.interface='ninux'
     set olsrd.ninux.Mode=mesh
+    # enable jsoninfo
+    set olsrd.jsoninfo=LoadPlugin
+    set olsrd.jsoninfo.library=olsrd_jsoninfo.so.0.0
+    set olsrd.jsoninfo.ignore=0
     commit olsrd
 EOF
 exit 0
