@@ -50,9 +50,9 @@ After the first compilation, you can avoid recompiling again by running::
 
     ansible-playbook -i hosts firmware.yml -l ninux -u <user>
 
-Run only the building step by using the specific tag::
+Run only the building steps by using the specific tags::
 
-    ansible-playbook -i hosts firmware.yml -l ninux -u <user> -t build
+    ansible-playbook -i hosts firmware.yml -l ninux -u <user> -t generator,build
 
 Compiling on a private host
 ---------------------------
