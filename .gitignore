@@ -1,8 +1,7 @@
-.config
-feeds.conf
-
 openwrt*/
 lede*/
+/generator/
+/source/
 *.DS_Store
 packages/
 *.komodoproject
