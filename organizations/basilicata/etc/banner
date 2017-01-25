@@ -6,9 +6,8 @@ _   _  _____  _   _  _    _ __   __    ____   _____    _____
 |_| \_||_____||_| \_| \____/ /_/ \_\(_)\____/ |_|  \_\ \_____|
 
 --------------------------------------------------------------
-          The NinuxBas Firmware is based on LEDE
-         (Linux Embedded Development Environment)
-              https://www.lede-project.org/
+           The NNXX Firmware is based on OpenWRT
+                    https://openwrt.org
 --------------------------------------------------------------
 * Lan HNA Space:     10.27.0.0/16
 * Backbone:          172.27.0.0/16
