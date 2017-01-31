@@ -1,4 +1,4 @@
-- hosts: ninux
+- hosts: builder
   roles:
     - openwisp.openwisp2-imagegenerator
   vars:
@@ -6,7 +6,7 @@
     openwisp2fw_ssl_lib: openssl
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
-    openwisp2fw_bin_dir: /var/www/html/nnxx-firmware/
+    openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
     openwisp2fw_source_version: chaos_calmer
     openwisp2fw_source_archs:
         - ar71xx
