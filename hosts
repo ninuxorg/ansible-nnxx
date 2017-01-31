@@ -1,2 +1,2 @@
-[ninux]
+[builder]
 jenkins.basilicata.ninux.org ansible_user=michele ansible_port=2400
