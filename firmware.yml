@@ -10,6 +10,7 @@
     openwisp2fw_source_version: chaos_calmer
     openwisp2fw_source_archs:
         - ar71xx
+        - x86
     openwisp2fw_source_feeds:
         - method: src-git
           name: packages
@@ -127,13 +128,22 @@
           ar71xx:
             profile: Default
             packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+          x86:
+            profile: Generic
+            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
         full_olsrd1:
           ar71xx:
             profile: Default
             packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
+          x86:
+            profile: Generic
+            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
         nossl_olsrd1:
           ar71xx:
             profile: Default
+            packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
+          x86:
+            profile: Generic
             packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
     # definition of organizations
     openwisp2fw_organizations:
