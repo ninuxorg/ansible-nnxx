@@ -10,7 +10,7 @@ if [ "$ssid0" == "OpenWrt" ] || [ "$ssid0" == "lede" ]; then
 fi
 # mesh
 uci set wireless.wifi_ninux='wifi-iface'
-uci set wireless.wifi_ninux.device=radio0
+uci set wireless.wifi_ninux.device=radio1
 uci set wireless.wifi_ninux.ifname=ninux
 uci set wireless.wifi_ninux.encryption=none
 uci set wireless.wifi_ninux.mode=adhoc
@@ -24,6 +24,7 @@ uci set wireless.wifi_wlan0.encryption=none
 uci set wireless.wifi_wlan0.mode=ap
 uci set wireless.wifi_wlan0.network=lan
 uci set wireless.wifi_wlan0.ssid=ninux.org-basilicata
+uci set wireless.wifi_wlan0.wds=1
 # enable radio0 if present
 radio0=$(uci get wireless.radio0 2> /dev/null)
 if [ "$radio0" == "wifi-device" ]; then
