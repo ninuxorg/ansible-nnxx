@@ -155,7 +155,6 @@
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
-            verify_ssl: 0
         - name: palermo
           flavours:
             - full_olsrd1
@@ -164,4 +163,3 @@
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
-            verify_ssl: 0
