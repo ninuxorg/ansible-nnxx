@@ -126,23 +126,27 @@
         - olsrd-mod-jsoninfo
         - luci-lib-json
         - luci-app-olsr
+    # packages used in flavours
+    full_olsrd2_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+    full_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
+    nossl_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
     # definition of available flavours
     openwisp2fw_image_flavours:
         full_olsrd2:
           ar71xx:
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+            packages: "{{ full_olsrd2_packages }}"
           x86:
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+            packages: "{{ full_olsrd2_packages }}"
         full_olsrd1:
           ar71xx:
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
+            packages: "{{ full_olsrd1_packages }}"
           x86:
-            packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
+            packages: "{{ full_olsrd1_packages }}"
         nossl_olsrd1:
           ar71xx:
-            packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
+            packages: "{{ nossl_olsrd1_packages }}"
           x86:
-            packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages }}"
+            packages: "{{ nossl_olsrd1_packages }}"
     # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
