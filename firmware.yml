@@ -15,6 +15,9 @@
         - system: x86
           subtarget: generic
           profile: Generic
+        - system: ramips
+          subtarget: mt7620
+          profile: XIAOMI-MIWIFI-MINI
     openwisp2fw_source_feeds:
         - method: src-git
           name: packages
@@ -60,6 +63,10 @@
         - kmod-usb-storage
         - kmod-usb-storage-extras
         - kmod-ipip
+        # mt7620
+        - kmod-usb-ohci
+        - kmod-usb2
+        - kmod-mt76
         # olsrd1 specifc, used by Palermo
         - olsrd
         - olsrd-mod-nameservice
@@ -141,6 +148,8 @@
           ar71xx:
             packages: "{{ full_olsrd1_packages }}"
           x86:
+            packages: "{{ full_olsrd1_packages }}"
+          ramips:
             packages: "{{ full_olsrd1_packages }}"
         nossl_olsrd1:
           ar71xx:
