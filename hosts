@@ -1,2 +1,2 @@
 [builder]
-jenkins.basilicata.ninux.org ansible_user=jenkins ansible_port=2400
+jenkins.nnxx.ninux.org ansible_user=jenkins ansible_port=2400
