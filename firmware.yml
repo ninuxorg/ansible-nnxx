@@ -7,6 +7,7 @@
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
     openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
+    openwisp2fw_source_repo: https://github.com/openwrt/openwrt.git
     openwisp2fw_source_version: chaos_calmer
     openwisp2fw_source_targets:
         - system: ar71xx
