@@ -72,4 +72,4 @@ To compile on a different host than the ones specified in the `hosts
 
 Now run::
 
-    ansible-playbook -i private_hosts firmware.yml  -l builder -e "recompile=1 cores=4"
+    ansible-playbook -i private_hosts firmware.yml -l builder -e "recompile=1 cores=4"
