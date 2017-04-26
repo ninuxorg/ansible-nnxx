@@ -3,12 +3,10 @@
     - openwisp.openwisp2-imagegenerator
   vars:
     basedir: /home/jenkins/workspace/nnxx-firmware
-    openwisp2fw_ssl_lib: openssl
+    openwisp2fw_ssl_lib: mbedtls
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
     openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
-    openwisp2fw_source_repo: https://github.com/openwrt/openwrt.git
-    openwisp2fw_source_version: chaos_calmer
     openwisp2fw_source_targets:
         - system: ar71xx
           subtarget: generic
@@ -18,27 +16,11 @@
           profile: Generic
         - system: ramips
           subtarget: mt7620
-          profile: XIAOMI-MIWIFI-MINI
+          profile: DEVICE_miwifi-mini
         - system: brcm2708
           subtarget: bcm2710
           profile: rpi-3
     openwisp2fw_source_feeds:
-        - method: src-git
-          name: packages
-          location: https://github.com/openwrt/packages.git
-          branch: for-15.05
-        - method: src-git
-          name: luci
-          location: https://github.com/openwrt/luci.git
-          branch: for-15.05
-        - method: src-git
-          name: targets
-          location: https://github.com/openwrt/targets.git
-          branch: master
-        - method: src-git
-          name: routing
-          location: https://github.com/openwrt-routing/packages.git
-          branch: for-15.05
         - method: src-git
           name: openwisp
           location: https://github.com/openwisp/openwisp-config.git
@@ -47,6 +29,22 @@
           name: luciopenwisp
           location: https://github.com/openwisp/luci-openwisp.git
           branch: master
+        - method: src-git
+          name: packages
+          location: https://github.com/openwrt/packages.git
+          branch: lede-17.01
+        - method: src-git
+          name: luci
+          location: https://github.com/openwrt/luci.git
+          branch: lede-17.01
+        - method: src-git
+          name: targets
+          location: https://github.com/openwrt/targets.git
+          branch: master
+        - method: src-git
+          name: routing
+          location: https://github.com/openwrt-routing/packages.git
+          branch: lede-17.01
     # packages compiled during compilation step
     openwisp2fw_source_additional_packages:
         - wpad
