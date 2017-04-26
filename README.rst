@@ -51,15 +51,15 @@ In order to compile the firmware, you need to have access to one of the hosts li
 
 Recompile the image builders and build all the images::
 
-    ansible-playbook -i hosts firmware.yml -l ninux -u <user> -e "recompile=1 cores=4"
+    ansible-playbook -i hosts firmware.yml -l builder -u <user> -e "recompile=1 cores=4"
 
 After the first compilation, you can avoid recompiling again by running::
 
-    ansible-playbook -i hosts firmware.yml -l ninux -u <user>
+    ansible-playbook -i hosts firmware.yml -l builder -u <user>
 
 Run only the building steps by using the specific tags::
 
-    ansible-playbook -i hosts firmware.yml -l ninux -u <user> -t generator,build
+    ansible-playbook -i hosts firmware.yml -l builder -u <user> -t generator,build
 
 Compiling on a private host
 ---------------------------
@@ -67,9 +67,9 @@ Compiling on a private host
 To compile on a different host than the ones specified in the `hosts
 <https://github.com/ninuxorg/ansible-nnxx/blob/master/hosts>`_ file, create a ``private_hosts`` file::
 
-    [my_private_host]
+    [builder]
     my.project.org ansible_user=user ansible_port=22
 
 Now run::
 
-    ansible-playbook -i private_hosts firmware.yml  -l my_private_host -e "recompile=1 cores=4"
+    ansible-playbook -i private_hosts firmware.yml  -l builder -e "recompile=1 cores=4"
