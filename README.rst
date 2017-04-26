@@ -29,6 +29,13 @@ The firmware images are managed via `ansible-openwisp2-imagegenerator
 to build several openwrt firmware images for different organizations while keeping track of their configurations
 (for more information regarding the process, see the project's README).
 
+Requirements
+============
+
+* a debian based VM
+* root access
+* at least 100 GB of free space
+
 Compiling
 ---------
 
