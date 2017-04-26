@@ -19,6 +19,9 @@
         - system: ramips
           subtarget: mt7620
           profile: XIAOMI-MIWIFI-MINI
+        - system: brcm2708
+          subtarget: bcm2710
+          profile: rpi-3
     openwisp2fw_source_feeds:
         - method: src-git
           name: packages
@@ -68,6 +71,9 @@
         - kmod-usb-ohci
         - kmod-usb2
         - kmod-mt76
+        # brcm2708
+        - kmod-brcmfmac
+        - brcmfmac-firmware-43430
         # olsrd1 specifc, used by Palermo
         - olsrd
         - olsrd-mod-nameservice
@@ -144,6 +150,8 @@
           ar71xx:
             packages: "{{ full_olsrd2_packages }}"
           x86:
+            packages: "{{ full_olsrd2_packages }}"
+          brcm2708:
             packages: "{{ full_olsrd2_packages }}"
         full_olsrd1:
           ar71xx:
