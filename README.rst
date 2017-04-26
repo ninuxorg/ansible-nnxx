@@ -32,7 +32,7 @@ to build several openwrt firmware images for different organizations while keepi
 Requirements
 ============
 
-* a debian based VM
+* a debian/ubuntu based VM
 * root access
 * at least 100 GB of free space
 
