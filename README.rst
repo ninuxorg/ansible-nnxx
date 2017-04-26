@@ -17,7 +17,7 @@ in the `NNXX (Ninux Experimental) <http://wiki.ninux.org/nnxx>`_ infrastructure 
 Firmware
 ========
 
-The firmware is based on `OpenWRT <https://openwrt.org/>`_ and the following additional software:
+The firmware is based on `LEDE <https://lede-project.org/>`_ and the following additional software:
 
 - olsrd2
 - luci-ssl
@@ -26,7 +26,7 @@ The firmware is based on `OpenWRT <https://openwrt.org/>`_ and the following add
 
 The firmware images are managed via `ansible-openwisp2-imagegenerator
 <https://github.com/openwisp/ansible-openwisp2-imagegenerator>`_, an ansible role that allows
-to build several openwrt firmware images for different organizations while keeping track of their configurations
+to build several lede firmware images for different organizations while keeping track of their configurations
 (for more information regarding the process, see the project's README).
 
 Requirements
