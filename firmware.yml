@@ -19,7 +19,7 @@
           profile: DEVICE_miwifi-mini
         - system: brcm2708
           subtarget: bcm2710
-          profile: rpi-3
+          profile: DEVICE_rpi-3
     openwisp2fw_source_feeds:
         - method: src-git
           name: openwisp
