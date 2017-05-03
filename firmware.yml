@@ -20,6 +20,8 @@
         - system: brcm2708
           subtarget: bcm2710
           profile: DEVICE_rpi-3
+        - system: sunxi
+          profile: DEVICE_sun7i-a20-lamobo-r1
     openwisp2fw_source_feeds:
         - method: src-git
           name: openwisp
@@ -72,6 +74,9 @@
         # brcm2708
         - kmod-brcmfmac
         - brcmfmac-firmware-43430
+        # sunxi
+        - kmod-ata-core
+        - kmod-ata-sunxi
         # olsrd1 specifc, used by Palermo
         - olsrd
         - olsrd-mod-nameservice
@@ -151,6 +156,8 @@
             packages: "{{ full_olsrd2_packages }}"
           brcm2708:
             packages: "{{ full_olsrd2_packages }}"
+          sunxi:
+            packages: "{{ full_olsrd2_packages + ['-kmod-eeprom-sunxi'] }}"
         full_olsrd1:
           ar71xx:
             packages: "{{ full_olsrd1_packages }}"
