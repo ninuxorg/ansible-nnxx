@@ -1,0 +1,2 @@
+[builder]
+jenkins.nnxx.ninux.org ansible_connection=local
