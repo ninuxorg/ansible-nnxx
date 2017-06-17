@@ -92,6 +92,7 @@
         - tc
         - kmod-sched
         - kmod-ath9k-htc
+        - sqm-scripts
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -153,7 +154,7 @@
     nnxx_hotspot_packages:
         - nodogsplash
 #        - luci-app-sqm
-#        - sqm-scripts
+        - sqm-scripts
         - kmod-ifb
         - tc
         - kmod-sched
