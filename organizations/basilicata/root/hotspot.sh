@@ -2,7 +2,7 @@
 TEMP=/tmp
 
 wget https://github.com/mikysal78/nodogsplash-basilicata/archive/master.zip
-opkg updatell
+opkg update
 
 opkg install unzip
 
