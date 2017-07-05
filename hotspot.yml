@@ -22,6 +22,8 @@
           profile: DEVICE_rpi-3
         - system: sunxi
           profile: DEVICE_sun7i-a20-lamobo-r1
+       - system: ipq806x
+          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: openwisp
@@ -176,6 +178,8 @@
           ramips:
             packages: "{{ full_olsrd2_hotspot_packages + ['-kmod-ath9k-htci'] }}"
           brcm2708:
+            packages: "{{ full_olsrd2_hotspot_packages + ['-kmod-ath9k-htci'] }}"
+          ipq806x:
             packages: "{{ full_olsrd2_hotspot_packages + ['-kmod-ath9k-htci'] }}"
     # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
