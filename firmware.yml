@@ -22,6 +22,8 @@
           profile: DEVICE_rpi-3
         - system: sunxi
           profile: DEVICE_sun7i-a20-lamobo-r1
+        - system: ipq806x
+          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: openwisp
@@ -158,6 +160,8 @@
             packages: "{{ full_olsrd2_packages }}"
           sunxi:
             packages: "{{ full_olsrd2_packages + ['-kmod-eeprom-sunxi'] }}"
+          ipq806x:
+            packages: "{{ full_olsrd2_packages }}"
         full_olsrd1:
           ar71xx:
             packages: "{{ full_olsrd1_packages }}"
