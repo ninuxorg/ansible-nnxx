@@ -205,3 +205,11 @@
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+        - name: campania
+          flavours:
+            - hotspot_olsrd2
+          openwisp:
+            url: "{{ default_openwisp2_url }}"
+            shared_secret: Secretn1nuxB4s
+            unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+
