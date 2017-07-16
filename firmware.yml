@@ -177,6 +177,15 @@
     # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
+        - name: defaults
+          flavours:
+            - full_olsrd2
+            - full_olsrd1
+            - nossl_olsrd1
+          openwisp:
+            url: "{{ default_openwisp2_url }}"
+            shared_secret: Secretn1nuxB4s
+            unmanaged: "{{ openwisp2fw_default_unmanaged }}"
         - name: basilicata
           flavours:
             - full_olsrd2
@@ -186,9 +195,20 @@
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
         - name: palermo
           flavours:
+            - full_olsrd2
             - full_olsrd1
             - nossl_olsrd1
           openwisp:
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+        - name: campania
+          flavours:
+            - full_olsrd2
+            - full_olsrd1
+            - nossl_olsrd1
+          openwisp:
+            url: "{{ default_openwisp2_url }}"
+            shared_secret: Secretn1nuxB4s
+            unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+
