@@ -1,0 +1,40 @@
+#!/bin/sh
+# remove default OpenWrt or LEDE wifi interfaces if present
+ssid1=$(uci get wireless.@wifi-iface[1].ssid 2> /dev/null)
+if [ "$ssid1" == "OpenWrt" ] || [ "$ssid1" == "lede" ]; then
+    uci delete wireless.@wifi-iface[1]
+fi
+ssid0=$(uci get wireless.@wifi-iface[0].ssid 2> /dev/null)
+if [ "$ssid0" == "OpenWrt" ] || [ "$ssid0" == "lede" ]; then
+    uci delete wireless.@wifi-iface[0]
+fi
+# mesh
+uci set wireless.wifi_ninux='wifi-iface'
+uci set wireless.wifi_ninux.device=radio1
+uci set wireless.wifi_ninux.ifname=ninux
+uci set wireless.wifi_ninux.encryption=none
+uci set wireless.wifi_ninux.mode=adhoc
+uci set wireless.wifi_ninux.network=ninux
+uci set wireless.wifi_ninux.ssid=ninux.org
+# access point
+uci set wireless.wifi_wlan0='wifi-iface'
+uci set wireless.wifi_wlan0.device=radio0
+uci set wireless.wifi_wlan0.ifname=wlan0
+uci set wireless.wifi_wlan0.encryption=none
+uci set wireless.wifi_wlan0.mode=ap
+uci set wireless.wifi_wlan0.network=lan
+uci set wireless.wifi_wlan0.ssid=ninux.org-firenze
+uci set wireless.wifi_wlan0.wds=1
+# enable radio0 if present
+radio0=$(uci get wireless.radio0 2> /dev/null)
+if [ "$radio0" == "wifi-device" ]; then
+    uci set wireless.radio0.disabled=0
+fi
+# enable radio1 if present
+radio1=$(uci get wireless.radio1 2> /dev/null)
+if [ "$radio1" == "wifi-device" ]; then
+    uci set wireless.radio1.disabled=0
+fi
+# commit
+uci commit wireless
+exit 0

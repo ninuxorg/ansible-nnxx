@@ -1,0 +1,8 @@
+#!/bin/sh
+uci batch <<-EOF
+	set network.ninux=interface
+    set network.ninux.ifname=ninux
+    set network.ninux.proto=none
+    commit network
+EOF
+exit 0

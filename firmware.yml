@@ -211,4 +211,22 @@
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+        - name: firenze
+          flavours:
+            - full_olsrd2
+          openwisp:
+            url: "10.150.22.22 "
+            shared_secret: Secretn1nuxFlo1932
+            unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+            verify_ssl: 0
+        - name: milano
+          flavours:
+            - full_olsrd2
+            - full_olsrd1
+            - nossl_olsrd1
+          openwisp:
+            url: "{{ default_openwisp2_url }}"
+            shared_secret: Secretn1nuxB4s
+            unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+
 
