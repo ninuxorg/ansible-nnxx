@@ -154,7 +154,7 @@
         - luci-app-olsr
     # packages used in the hotspot
     nnxx_hotspot_packages:
-        - nodogsplash
+        - nodogsplash2
 #        - luci-app-sqm
         - sqm-scripts
         - kmod-ifb
