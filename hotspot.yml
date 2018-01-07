@@ -89,7 +89,7 @@
         - luci-lib-json
         - luci-app-olsr
         # packages for hotspot
-        - nodogsplash2
+        - nodogsplash
         - kmod-ifb
         - tc
         - kmod-sched
@@ -104,6 +104,7 @@
         - CONFIG_BUSYBOX_CONFIG_FEATURE_REVERSE_SEARCH=y
         - CONFIG_BUSYBOX_CONFIG_FEATURE_VI_UNDO=y
         - CONFIG_BUSYBOX_CONFIG_WATCH=y
+        - CONFIG_BUSYBOX_DEFAULT_WHOIS=y
         # olsrd2
         - CONFIG_OONF_NHDP_AUTOLL4=y
         - CONFIG_OONF_OLSRV2_LAN_IMPORT=y
@@ -154,7 +155,7 @@
         - luci-app-olsr
     # packages used in the hotspot
     nnxx_hotspot_packages:
-        - nodogsplash2
+        - nodogsplash
 #        - luci-app-sqm
         - sqm-scripts
         - kmod-ifb
