@@ -89,12 +89,15 @@
         - luci-lib-json
         - luci-app-olsr
         # packages for hotspot
-        - nodogsplash
+        - nodogsplash2
         - kmod-ifb
         - tc
         - kmod-sched
         - kmod-ath9k-htc
         - sqm-scripts
+        - acme
+        - ddns-scripts
+        - ddns-scripts_no-ip_com
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
