@@ -89,15 +89,13 @@
         - luci-lib-json
         - luci-app-olsr
         # packages for hotspot
-        - nodogsplash
+        - nodogsplash2
         - kmod-ifb
         - tc
         - kmod-sched
         - kmod-ath9k-htc
         - sqm-scripts
         - acme
-        - ddns-scripts
-        - ddns-scripts_no-ip_com
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -158,7 +156,7 @@
         - luci-app-olsr
     # packages used in the hotspot
     nnxx_hotspot_packages:
-        - nodogsplash
+        - nodogsplash2
 #        - luci-app-sqm
         - sqm-scripts
         - kmod-ifb
@@ -166,8 +164,6 @@
         - kmod-sched
         - kmod-ath9k-htc
         - acme
-        - ddns-scripts
-        - ddns-scripts_no-ip_com  
     # packages used in flavours
     full_olsrd2_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     full_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages }}"
