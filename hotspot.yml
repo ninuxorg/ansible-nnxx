@@ -89,7 +89,7 @@
         - luci-lib-json
         - luci-app-olsr
         # packages for hotspot
-        - nodogsplash2
+        - nodogsplash
         - kmod-ifb
         - tc
         - kmod-sched
@@ -158,7 +158,7 @@
         - luci-app-olsr
     # packages used in the hotspot
     nnxx_hotspot_packages:
-        - nodogsplash2
+        - nodogsplash
 #        - luci-app-sqm
         - sqm-scripts
         - kmod-ifb
