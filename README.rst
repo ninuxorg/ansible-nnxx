@@ -42,9 +42,9 @@ Compiling
 **Note**: please take some time to read about the `build process of ansible-openwisp2-imagegenerator
 <https://github.com/openwisp/ansible-openwisp2-imagegenerator#build-process>`_.
 
-First of all, you have to install the ``openwisp.openwisp2-imagegenerator`` role via *ansible-galaxy*::
+First of all, you have to install the *requirments roles* role via *ansible-galaxy*::
 
-    ansible-galaxy install openwisp.openwisp2-imagegenerator
+    ansible-galaxy install -r requirements.yml
 
 In order to compile the firmware, you need to have access to one of the hosts listed in the `hosts
 <https://github.com/ninuxorg/ansible-nnxx/blob/master/hosts>`_, preferably via an SSH key installed on the server.
