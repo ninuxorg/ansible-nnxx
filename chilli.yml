@@ -165,7 +165,7 @@
     # packages used in flavours
     full_olsrd2_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli }}"
     full_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd1_packages + olsrd2_packages + nnxx_chilli }}"
-    nossl_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages +nnxx_chilli }}"
+    nossl_olsrd1_packages: "{{ openwisp2fw_default_packages + nnxx_nossl_packages + olsrd1_packages + olsrd2_packages + nnxx_chilli }}"
     # definition of available flavours
     openwisp2fw_image_flavours:
         full_olsrd2:
