@@ -6,7 +6,7 @@
     openwisp2fw_ssl_lib: mbedtls
     openwisp2fw_source_dir: "{{ basedir }}/source"
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
-    openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/
+    openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/chilli/
     openwisp2fw_source_repo: https://github.com/openwrt/openwrt.git
     openwisp2fw_source_version: openwrt-18.06
         openwisp2fw_source_targets:
