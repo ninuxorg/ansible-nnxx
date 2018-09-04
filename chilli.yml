@@ -30,12 +30,10 @@
         - method: src-git
           name: chilli
           location: https://github.com/openwisp/coova-chilli-openwrt.git
-          branch: master
         - method: src-git
           name: openwisp
           location: https://github.com/openwisp/openwisp-config.git
           branch: master
-        - method: src-git
           name: luciopenwisp
           location: https://github.com/openwisp/luci-openwisp.git
           branch: master
