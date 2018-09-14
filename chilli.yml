@@ -210,6 +210,7 @@
             url: "{{ default_openwisp2_url }}"
             shared_secret: Secretn1nuxB4s
             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+            management_interface: "vpn-management"
         - name: palermo
           flavours:
             - full_olsrd2
