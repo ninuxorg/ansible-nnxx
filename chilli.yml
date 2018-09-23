@@ -13,7 +13,7 @@
         - system: ar71xx
           subtarget: generic
           profile: Default
-     openwisp2fw_source_feeds:
+    openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
           location: https://github.com/openwisp/coova-chilli-openwrt.git
