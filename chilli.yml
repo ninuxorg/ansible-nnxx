@@ -13,6 +13,8 @@
         - system: ar71xx
           subtarget: generic
           profile: Default
+        - system: ipq806x
+          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
@@ -128,6 +130,8 @@
         hotspot:
           ar71xx:
             packages: "{{ hotspot_packages }}"
+          ipq806x:
+            packages: "{{ hotspot_packages }}" 
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
