@@ -134,7 +134,9 @@
           ar71xx:
             packages: "{{ hotspot_packages }}"
           ipq806x:
-            packages: "{{ hotspot_packages }}" 
+            packages: "{{ hotspot_packages }}"
+          mvebu:
+            packages: "{{ hotspot_packages }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
