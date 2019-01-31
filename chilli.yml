@@ -15,6 +15,9 @@
           profile: Default
         - system: ipq806x
           profile: Default
+        - system: mvebu
+          subtarget: cortexa9
+          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
