@@ -70,6 +70,9 @@
         # content filtering
         - privoxy
         - e2guardian
+        # WRT3200ACM
+        - mwifiex-sdio-firmware
+        - mwlwifi-firmware-88w8964
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -122,6 +125,9 @@
         - e2guardian
     olsrd2_packages:
         - oonf-olsrd2
+    WRT3200ACM:
+        - mwifiex-sdio-firmware
+        - mwlwifi-firmware-88w8964
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     hotspot_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
@@ -136,7 +142,7 @@
           ipq806x:
             packages: "{{ hotspot_packages }}"
           mvebu:
-            packages: "{{ hotspot_packages }}"
+            packages: "{{ hotspot_packages + WRT3200ACM }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
