@@ -134,7 +134,7 @@
         - kmod-mwlwifi
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
-    hotspot_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
+    hotspot_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering + WRT3200ACM }}"
     # definition of available flavours
     openwisp2fw_image_flavours:
         base:
@@ -146,7 +146,7 @@
           ipq806x:
             packages: "{{ hotspot_packages }}"
           mvebu:
-            packages: "{{ hotspot_packages + WRT3200ACM }}"
+            packages: "{{ hotspot_packages }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
