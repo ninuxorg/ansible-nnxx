@@ -132,6 +132,7 @@
         - kmod-mmc
         - kmod-mwifiex-sdio
         - kmod-mwlwifi
+        - mwlwifi-firmware-88w8897
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     hotspot_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
