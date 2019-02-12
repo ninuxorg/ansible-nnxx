@@ -18,15 +18,33 @@ uci set wireless.wifi_wlan0.network=lan
 uci set wireless.wifi_wlan0.ssid=ninux.org-basilicata
 uci set wireless.wifi_wlan0.wds=1
 
+# mesh radio 0
+uci set wireless.wifi_mesh0='wifi-iface'
+uci set wireless.wifi_mesh0.device=radio0
+uci set wireless.wifi_mesh0.encryption=none
+uci set wireless.wifi_mesh0.ifname=mesh0
+uci set wireless.wifi_mesh0.mesh_id=ninux
+uci set wireless.wifi_mesh0.mode=mesh
+uci set wireless.wifi_mesh0.network=mesh
+
 # access point radio 1
-uci set wireless.wifi_wlan0='wifi-iface'
-uci set wireless.wifi_wlan0.device=radio1
-uci set wireless.wifi_wlan0.ifname=ninux5
-uci set wireless.wifi_wlan0.encryption=none
-uci set wireless.wifi_wlan0.mode=ap
-uci set wireless.wifi_wlan0.network=lan
-uci set wireless.wifi_wlan0.ssid=ninux.org-basilicata
-uci set wireless.wifi_wlan0.wds=1
+uci set wireless.wifi_wlan1='wifi-iface'
+uci set wireless.wifi_wlan1.device=radio1
+uci set wireless.wifi_wlan1.ifname=ninux5
+uci set wireless.wifi_wlan1.encryption=none
+uci set wireless.wifi_wlan1.mode=ap
+uci set wireless.wifi_wlan1.network=lan
+uci set wireless.wifi_wlan1.ssid=ninux.org-basilicata
+uci set wireless.wifi_wlan1.wds=1
+
+# mesh radio 1
+uci set wireless.wifi_mesh1='wifi-iface'
+uci set wireless.wifi_mesh1.device=radio1
+uci set wireless.wifi_mesh1.encryption=none
+uci set wireless.wifi_mesh1.ifname=mesh1
+uci set wireless.wifi_mesh1.mesh_id=ninux
+uci set wireless.wifi_mesh1.mode=mesh
+uci set wireless.wifi_mesh1.network=mesh
 
 # enable radio0 if present
 radio0=$(uci get wireless.radio0 2> /dev/null)
