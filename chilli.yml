@@ -71,10 +71,11 @@
         - privoxy
         - e2guardian
         # WRT3200ACM:
-        - kmod-mac80211
-        - kmod-mmc
+        #- kmod-mac80211
+        #- kmod-mmc
         - kmod-mwifiex-sdio
-        - kmod-mwlwifi
+        - mwifiex-sdio-firmware
+          #- kmod-mwlwifi
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -117,6 +118,7 @@
         - libustream-{{ openwisp2fw_ssl_lib }}
         - px5g
         - luci-ssl
+        - bind-client
     # packages used in the chilli flavour
     nnxx_chilli:
         - coova-chilli
@@ -128,10 +130,11 @@
     olsrd2_packages:
         - oonf-olsrd2
     WRT3200ACM:
-        - kmod-mac80211
-        - kmod-mmc
+            #- kmod-mac80211
+            #- kmod-mmc
         - kmod-mwifiex-sdio
-        - kmod-mwlwifi
+        - mwifiex-sdio-firmware
+          #- kmod-mwlwifi
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     hotspot_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
