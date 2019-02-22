@@ -118,7 +118,7 @@
         - libustream-{{ openwisp2fw_ssl_lib }}
         - px5g
         - luci-ssl
-        - bind-client
+          #- bind-client
     # packages used in the chilli flavour
     nnxx_chilli:
         - coova-chilli
