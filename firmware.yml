@@ -1,0 +1,179 @@
+- hosts: builder
+  roles:
+    - openwisp.openwisp2-imagegenerator
+  vars:
+    basedir: /home/jenkins/workspace/nnxx-firmware
+    openwisp2fw_ssl_lib: mbedtls
+    openwisp2fw_source_dir: "{{ basedir }}/source"
+    openwisp2fw_generator_dir: "{{ basedir }}/generator"
+    openwisp2fw_bin_dir: /var/www/downloads.openwisp.org/nnxx-firmware/firmware/
+    openwisp2fw_source_repo: https://github.com/openwrt/openwrt.git
+    openwisp2fw_source_version: openwrt-18.06
+    openwisp2fw_source_targets:
+        - system: ar71xx
+          subtarget: generic
+          profile: Default
+        - system: ipq806x
+          profile: Default
+        - system: mvebu
+          subtarget: cortexa9
+          profile: Default
+    openwisp2fw_source_feeds:
+        - method: src-git
+          name: chilli
+          location: https://github.com/openwisp/coova-chilli-openwrt.git
+          branch: master
+        - method: src-git
+          name: openwisp
+          location: https://github.com/openwisp/openwisp-config.git
+          branch: master
+        - method: src-git
+          name: luciopenwisp
+          location: https://github.com/openwisp/luci-openwisp.git
+          branch: master
+        - method: src-git
+          name: packages
+          location: https://github.com/openwrt/packages.git
+          branch: openwrt-18.06
+        - method: src-git
+          name: luci
+          location: https://github.com/openwrt/luci.git
+          branch: openwrt-18.06
+        - method: src-git
+          name: targets
+          location: https://github.com/openwrt/targets.git
+          branch: master
+        - method: src-git
+          name: routing
+          location: https://github.com/openwrt-routing/packages.git
+          branch: openwrt-18.06
+    # packages compiled during compilation step
+    openwisp2fw_source_additional_packages:
+        - wpad
+        - iputils-ping
+        - ip-full
+        - wget
+        - partx-utils
+        - oonf-olsrd2
+        - luci
+        - luci-ssl
+        - iputils-ping
+        - ip-full
+        - iwinfo
+        - iperf3
+        - ipip
+        - kmod-ipip
+        # chilli
+        - coova-chilli
+        - lua-cjson
+        - rpcd-mod-iwinfo
+        # nodogsplash
+        - nodogsplash
+        # content filtering
+        - privoxy
+        - e2guardian
+        # WRT3200ACM:
+        #- kmod-mac80211
+        #- kmod-mmc
+        - kmod-mwifiex-sdio
+        - mwifiex-sdio-firmware
+          #- kmod-mwlwifi
+    # other OpenWRT/LEDE configurations
+    openwisp2fw_source_other_configs:
+        # busybox
+        - CONFIG_BUSYBOX_CUSTOM=y
+        - CONFIG_BUSYBOX_CONFIG_FEATURE_EDITING_SAVEHISTORY=y
+        - CONFIG_BUSYBOX_CONFIG_FEATURE_EDITING_SAVE_ON_EXIT=y
+        - CONFIG_BUSYBOX_CONFIG_FEATURE_REVERSE_SEARCH=y
+        - CONFIG_BUSYBOX_CONFIG_FEATURE_VI_UNDO=y
+        - CONFIG_BUSYBOX_CONFIG_WATCH=y
+        # olsrd2
+        - CONFIG_OONF_NHDP_AUTOLL4=y
+        - CONFIG_OONF_OLSRV2_LAN_IMPORT=y
+        # chilli
+        - CONFIG_COOVACHILLI_REDIR=y
+        - CONFIG_COOVACHILLI_OPENSSL=y
+        # workaround to avoid conflicts between wpad and wpad-mini
+        - "# CONFIG_PACKAGE_wpad-mini is not set"
+    # packages passed to "PACKAGES" flag of image builder (in the image building step)
+    openwisp2fw_default_packages:
+        - -ppp
+        - -ppp-mod-pppoe
+        - -wpad-mini
+        - wpad
+        - uhttpd
+        - uhttpd-mod-ubus
+        - openvpn-{{ openwisp2fw_ssl_lib }}
+        - openwisp-config-{{ openwisp2fw_ssl_lib }}
+    # packages used in the full flavour
+    nnxx_full_packages:
+        - iputils-ping
+        - ip-full
+        - wget
+        - partx-utils
+        - iputils-ping
+        - ip-full
+        - iwinfo
+        - iperf3
+        - ipip
+        - kmod-ipip
+        - libustream-{{ openwisp2fw_ssl_lib }}
+        - px5g
+        - luci-ssl
+          #- bind-client
+    # packages used in the chilli flavour
+    nnxx_chilli:
+        - coova-chilli
+        - lua-cjson
+        - rpcd-mod-iwinfo
+    nnxx_nodogsplash:
+        - nodogsplash
+    content_filtering:
+        - privoxy
+        - e2guardian
+    olsrd2_packages:
+        - oonf-olsrd2
+    WRT3200ACM:
+            #- kmod-mac80211
+            #- kmod-mmc
+        - kmod-mwifiex-sdio
+        - mwifiex-sdio-firmware
+          #- kmod-mwlwifi
+    # packages used in flavours
+    base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
+    chilli_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
+    nodogsplash_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_nodogsplash + content_filtering }}"
+    # definition of available flavours
+    openwisp2fw_image_flavours:
+        base:
+          ar71xx:
+            packages: "{{ base_packages }}"
+        chilli:
+          ar71xx:
+            packages: "{{ chilli_packages }}"
+          ipq806x:
+            packages: "{{ chilli_packages }}"
+          mvebu:
+            packages: "{{ chilli_packages + WRT3200ACM }}"
+        nodogsplash:
+          ar71xx:
+            packages: "{{ nodogsplash_packages }}"
+          ipq806x:
+            packages: "{{ nodogsplash_packages }}"
+          mvebu:
+            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
+
+     # definition of organizations
+    default_openwisp2_url: https://openwisp.nnxx.ninux.org
+    openwisp2fw_organizations:
+         - name: basilicata
+           flavours:
+             - base
+             - chilli
+             - nodogsplash
+           openwisp:
+             url: "{{ default_openwisp2_url }}"
+             shared_secret: Secretn1nuxB4s
+             unmanaged: "{{ openwisp2fw_default_unmanaged }}"
+             management_interface: "vpnbas"
+ 
