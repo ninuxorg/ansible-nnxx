@@ -135,6 +135,7 @@
         - rpcd-mod-iwinfo
     nnxx_nodogsplash:
         - nodogsplash
+        - sqm-scripts
     content_filtering:
         - privoxy
         - e2guardian
