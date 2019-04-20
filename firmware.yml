@@ -76,8 +76,15 @@
         #- kmod-mac80211
         #- kmod-mmc
         - kmod-mwifiex-sdio
+        - kmod-usb-core
+        - kmod-usb-ehci
+        - kmod-usb-ohci
+        - kmod-usb-storage
+        - kmod-usb-uhci
+        - kmod-usb2
+        - kmod-usb3
         - mwifiex-sdio-firmware
-          #- kmod-mwlwifi
+        - kmod-mwlwifi
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -137,8 +144,15 @@
             #- kmod-mac80211
             #- kmod-mmc
         - kmod-mwifiex-sdio
+        - kmod-usb-core
+        - kmod-usb-ehci
+        - kmod-usb-ohci
+        - kmod-usb-storage
+        - kmod-usb-uhci
+        - kmod-usb2
+        - kmod-usb3
         - mwifiex-sdio-firmware
-          #- kmod-mwlwifi
+        - kmod-mwlwifi
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
     chilli_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
