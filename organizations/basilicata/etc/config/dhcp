@@ -1,4 +1,4 @@
-config dnsmasq
+config dnsmasq 'dnsmasq_1'
 	option domainneeded	1
 	option boguspriv	1
 	option filterwin2k	0  # enable for dial on demand
@@ -21,7 +21,7 @@ config dnsmasq
 	#list bogusnxdomain     '64.94.110.11'
 	option localservice	1  # disable to allow DNS requests from non-local subnets
 
-config dhcp lan
+config dhcp 'lan'
 	option interface	lan
 	option start		100
 	option limit		200
