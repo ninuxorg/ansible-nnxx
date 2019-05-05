@@ -70,12 +70,7 @@
         # nodogsplash
         - nodogsplash
         - sqm-scripts
-        # content filtering
-        - privoxy
-        - e2guardian
         # WRT3200ACM:
-        #- kmod-mac80211
-        #- kmod-mmc
         - kmod-mwifiex-sdio
         - kmod-usb-core
         - kmod-usb-ehci
@@ -137,14 +132,9 @@
     nnxx_nodogsplash:
         - nodogsplash
         - sqm-scripts
-    content_filtering:
-        - privoxy
-        - e2guardian
     olsrd2_packages:
         - oonf-olsrd2
     WRT3200ACM:
-            #- kmod-mac80211
-            #- kmod-mmc
         - kmod-mwifiex-sdio
         - kmod-usb-core
         - kmod-usb-ehci
@@ -157,8 +147,8 @@
         - kmod-mwlwifi
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
-    chilli_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli + content_filtering }}"
-    nodogsplash_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_nodogsplash + content_filtering }}"
+    chilli_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli }}"
+    nodogsplash_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_nodogsplash }}"
     # definition of available flavours
     openwisp2fw_image_flavours:
         base:
