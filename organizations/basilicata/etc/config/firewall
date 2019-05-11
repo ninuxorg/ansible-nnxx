@@ -119,14 +119,4 @@ config zone 'hotspot'
 	option network 'hotspot'
 	option output 'ACCEPT'
 
-config redirect 'Transparent_proxy'
-	option name 'Transparent proxy'
-	option src 'hotspot'
-	option proto 'tcp'
-	option dest_port '8888'
-	option src_dport '80'
-	option dest_ip '10.27.22.5'
-	option target 'DNAT'
-	option dest 'lan'
-
 
