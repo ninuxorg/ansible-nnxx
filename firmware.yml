@@ -15,9 +15,9 @@
           profile: Default
         - system: ipq806x
           profile: Default
-        - system: mvebu
-          subtarget: cortexa9
-          profile: Default
+#        - system: mvebu
+#          subtarget: cortexa9
+#          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
@@ -71,16 +71,16 @@
         - nodogsplash
         - sqm-scripts
         # WRT3200ACM:
-        - kmod-mwifiex-sdio
-        - kmod-usb-core
-        - kmod-usb-ehci
-        - kmod-usb-ohci
-        - kmod-usb-storage
-        - kmod-usb-uhci
-        - kmod-usb2
-        - kmod-usb3
-        - mwifiex-sdio-firmware
-        - kmod-mwlwifi
+#        - kmod-mwifiex-sdio
+#        - kmod-usb-core
+#        - kmod-usb-ehci
+#        - kmod-usb-ohci
+#        - kmod-usb-storage
+#        - kmod-usb-uhci
+#        - kmod-usb2
+#        - kmod-usb3
+#        - mwifiex-sdio-firmware
+#        - kmod-mwlwifi
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -159,15 +159,15 @@
             packages: "{{ chilli_packages }}"
           ipq806x:
             packages: "{{ chilli_packages }}"
-          mvebu:
-            packages: "{{ chilli_packages + WRT3200ACM }}"
+#          mvebu:
+#            packages: "{{ chilli_packages + WRT3200ACM }}"
         nodogsplash:
           ar71xx:
             packages: "{{ nodogsplash_packages }}"
           ipq806x:
             packages: "{{ nodogsplash_packages }}"
-          mvebu:
-            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
+#          mvebu:
+#            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
 
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
