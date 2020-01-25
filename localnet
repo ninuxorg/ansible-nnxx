@@ -1,0 +1,2 @@
+[builder]
+jenkins              ansible_connection=local
