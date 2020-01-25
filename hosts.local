@@ -1,2 +1,2 @@
 [builder]
-jenkins.nnxx.ninux.org ansible_connection=local
+jenkins.basilicata.nnxx ansible_connection=local
