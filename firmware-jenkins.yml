@@ -154,6 +154,10 @@
         base:
           ar71xx:
             packages: "{{ base_packages }}"
+          ipq806x:
+            packages: "{{ base_packages }}"
+          mvebu:
+            packages: "{{ base + WRT3200ACM }}"
         chilli:
           ar71xx:
             packages: "{{ chilli_packages }}"
