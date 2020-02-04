@@ -13,6 +13,11 @@
         - system: ar71xx
           subtarget: generic
           profile: Default
+        - system: ipq806x
+          profile: Default
+        - system: mvebu
+          subtarget: cortexa9
+          profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
@@ -150,16 +155,19 @@
         base:
           ar71xx:
             packages: "{{ base_packages }}"
+        chilli:
+          ar71xx:
+            packages: "{{ chilli_packages }}"
         nodogsplash:
           ar71xx:
             packages: "{{ nodogsplash_packages }}"
-
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
          - name: basilicata
            flavours:
              - base
+             - chilli
              - nodogsplash
            openwisp:
              url: "{{ default_openwisp2_url }}"
