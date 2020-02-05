@@ -161,6 +161,8 @@
         nodogsplash:
           ar71xx:
             packages: "{{ nodogsplash_packages }}"
+          mvebu:
+            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
