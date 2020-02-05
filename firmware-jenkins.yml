@@ -155,21 +155,22 @@
         base:
           ar71xx:
             packages: "{{ base_packages }}"
-        chilli:
+          ipq806x:
+            packages: "{{ base_packages }}"
+          chilli:
           ar71xx:
             packages: "{{ chilli_packages }}"
         nodogsplash:
           ar71xx:
             packages: "{{ nodogsplash_packages }}"
-          mvebu:
-            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
+          ipq806x:
+            packages: "{{ nodogsplash_packages }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
          - name: basilicata
            flavours:
              - base
-             - chilli
              - nodogsplash
            openwisp:
              url: "{{ default_openwisp2_url }}"
