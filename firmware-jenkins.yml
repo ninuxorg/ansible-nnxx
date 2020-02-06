@@ -71,7 +71,10 @@
         - nodogsplash
         - sqm-scripts
         # WRT3200ACM:
-        - kmod-mwifiex-sdio
+        - kmod-ath
+        - kmod-ath9k
+        - kmod-ath9k-common
+        - ATH_DFS
         - kmod-usb-core
         - kmod-usb-ehci
         - kmod-usb-ohci
@@ -79,8 +82,6 @@
         - kmod-usb-uhci
         - kmod-usb2
         - kmod-usb3
-        - mwifiex-sdio-firmware
-        - kmod-mwlwifi
     # other OpenWRT/LEDE configurations
     openwisp2fw_source_other_configs:
         # busybox
@@ -165,6 +166,9 @@
             packages: "{{ nodogsplash_packages }}"
           ipq806x:
             packages: "{{ nodogsplash_packages }}"
+          mvebu:
+            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
+
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
