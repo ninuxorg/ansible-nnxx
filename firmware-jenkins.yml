@@ -17,7 +17,7 @@
           profile: Default
         - system: mvebu
           subtarget: cortexa9
-          profile: Default
+          profile: DEVICE_linksys_wrt3200acm
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
