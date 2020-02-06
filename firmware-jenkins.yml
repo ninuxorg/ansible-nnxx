@@ -157,7 +157,7 @@
             packages: "{{ base_packages }}"
           ipq806x:
             packages: "{{ base_packages }}"
-          chilli:
+        chilli:
           ar71xx:
             packages: "{{ chilli_packages }}"
         nodogsplash:
@@ -172,6 +172,7 @@
            flavours:
              - base
              - nodogsplash
+             - chilli
            openwisp:
              url: "{{ default_openwisp2_url }}"
              shared_secret: Secretn1nuxB4s
