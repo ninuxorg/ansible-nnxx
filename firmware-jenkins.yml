@@ -18,6 +18,8 @@
         - system: mvebu
           subtarget: cortexa9
           profile: DEVICE_linksys_wrt3200acm
+        - system: sunxi
+          profile: DEVICE_sun7i-a20-lamobo-r1
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
