@@ -160,6 +160,8 @@
             packages: "{{ base_packages }}"
           ipq806x:
             packages: "{{ base_packages }}"
+          sunxi:
+            packages: "{{ base_packages }}"
         chilli:
           ar71xx:
             packages: "{{ chilli_packages }}"
@@ -170,7 +172,8 @@
             packages: "{{ nodogsplash_packages }}"
           mvebu:
             packages: "{{ nodogsplash_packages + WRT3200ACM }}"
-
+          sunxi:
+            packages: "{{ nodogsplash_packages }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
