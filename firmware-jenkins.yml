@@ -18,9 +18,6 @@
         - system: mvebu
           subtarget: cortexa9
           profile: DEVICE_linksys_wrt3200acm
-        - system: sunxi
-          subtarget: cortexa7
-          profile: DEVICE_lamobo_lamobo-r1
     openwisp2fw_source_feeds:
         - method: src-git
           name: chilli
@@ -161,8 +158,6 @@
             packages: "{{ base_packages }}"
           ipq806x:
             packages: "{{ base_packages }}"
-          sunxi:
-            packages: "{{ base_packages }}"
         chilli:
           ar71xx:
             packages: "{{ chilli_packages }}"
@@ -173,8 +168,6 @@
             packages: "{{ nodogsplash_packages }}"
           mvebu:
             packages: "{{ nodogsplash_packages + WRT3200ACM }}"
-          sunxi:
-            packages: "{{ nodogsplash_packages }}"
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
     openwisp2fw_organizations:
