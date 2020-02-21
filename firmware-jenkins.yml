@@ -63,6 +63,7 @@
         - iperf3
         - ipip
         - kmod-ipip
+        - lua-cjson
         # chilli
         - coova-chilli
         - lua-cjson
