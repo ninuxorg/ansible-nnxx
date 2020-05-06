@@ -100,6 +100,14 @@
         - CONFIG_COOVACHILLI_OPENSSL=y
         # workaround to avoid conflicts between wpad and wpad-mini
         - "# CONFIG_PACKAGE_wpad-mini is not set"
+        # version
+        - CONFIG_VERSIONOPT=y
+        - CONFIG_VERSION_DIST="OpenWrt"
+        - CONFIG_VERSION_REPO="http://downloads.nnxx.ninux.org/firmware"
+        - CONFIG_VERSION_SUPPORT_URL="https://t.me/ninux_experimental"
+        - CONFIG_VERSION_PRODUCT="NNXX"
+        - CONFIG_VERSION_FILENAMES=y
+        - CONFIG_VERSION_CODE_FILENAMES=y
     # packages passed to "PACKAGES" flag of image builder (in the image building step)
     openwisp2fw_default_packages:
         - -ppp
