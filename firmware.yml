@@ -8,7 +8,7 @@
     openwisp2fw_generator_dir: "{{ basedir }}/generator"
     openwisp2fw_bin_dir: /var/www/nnxx-firmware/
     openwisp2fw_source_repo: https://github.com/openwrt/openwrt.git
-    openwisp2fw_source_version: openwrt-18.06
+    openwisp2fw_source_version: openwrt-19.07
     openwisp2fw_source_targets:
         - system: ar71xx
           subtarget: generic
@@ -20,10 +20,6 @@
           profile: Default
     openwisp2fw_source_feeds:
         - method: src-git
-          name: chilli
-          location: https://github.com/openwisp/coova-chilli-openwrt.git
-          branch: master
-        - method: src-git
           name: openwisp
           location: https://github.com/openwisp/openwisp-config.git
           branch: master
@@ -34,11 +30,11 @@
         - method: src-git
           name: packages
           location: https://github.com/openwrt/packages.git
-          branch: openwrt-18.06
+          branch: openwrt-19.07
         - method: src-git
           name: luci
           location: https://github.com/openwrt/luci.git
-          branch: openwrt-18.06
+          branch: openwrt-19.07
         - method: src-git
           name: targets
           location: https://github.com/openwrt/targets.git
@@ -46,7 +42,7 @@
         - method: src-git
           name: routing
           location: https://github.com/openwrt-routing/packages.git
-          branch: openwrt-18.06
+          branch: openwrt-19.07
     # packages compiled during compilation step
     openwisp2fw_source_additional_packages:
         - wpad
@@ -63,12 +59,8 @@
         - iperf3
         - ipip
         - kmod-ipip
-        # chilli
-        - coova-chilli
-        - lua-cjson
-        - rpcd-mod-iwinfo
-        # nodogsplash
-        - nodogsplash
+        # Captive Portals
+        - opennds
         - sqm-scripts
         # WRT3200ACM:
         - kmod-mwifiex-sdio
@@ -93,9 +85,6 @@
         # olsrd2
         - CONFIG_OONF_NHDP_AUTOLL4=y
         - CONFIG_OONF_OLSRV2_LAN_IMPORT=y
-        # chilli
-        - CONFIG_COOVACHILLI_REDIR=y
-        - CONFIG_COOVACHILLI_OPENSSL=y
         # workaround to avoid conflicts between wpad and wpad-mini
         - "# CONFIG_PACKAGE_wpad-mini is not set"
     # packages passed to "PACKAGES" flag of image builder (in the image building step)
@@ -125,12 +114,8 @@
         - luci-ssl
           #- bind-client
     # packages used in the chilli flavour
-    nnxx_chilli:
-        - coova-chilli
-        - lua-cjson
-        - rpcd-mod-iwinfo
-    nnxx_nodogsplash:
-        - nodogsplash
+    nnxx_opennds:
+        - opennds
         - sqm-scripts
     olsrd2_packages:
         - oonf-olsrd2
@@ -147,27 +132,19 @@
         - kmod-mwlwifi
     # packages used in flavours
     base_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages }}"
-    chilli_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_chilli }}"
-    nodogsplash_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_nodogsplash }}"
+    opennds_packages: "{{ openwisp2fw_default_packages + nnxx_full_packages + olsrd2_packages + nnxx_opennds }}"
     # definition of available flavours
     openwisp2fw_image_flavours:
         base:
           ar71xx:
             packages: "{{ base_packages }}"
-        chilli:
+        opennds:
           ar71xx:
-            packages: "{{ chilli_packages }}"
+            packages: "{{ opennds_packages }}"
           ipq806x:
-            packages: "{{ chilli_packages }}"
+            packages: "{{ opennds_packages }}"
           mvebu:
-            packages: "{{ chilli_packages + WRT3200ACM }}"
-        nodogsplash:
-          ar71xx:
-            packages: "{{ nodogsplash_packages }}"
-          ipq806x:
-            packages: "{{ nodogsplash_packages }}"
-          mvebu:
-            packages: "{{ nodogsplash_packages + WRT3200ACM }}"
+            packages: "{{ opennds + WRT3200ACM }}"
 
      # definition of organizations
     default_openwisp2_url: https://openwisp.nnxx.ninux.org
@@ -175,8 +152,7 @@
          - name: basilicata
            flavours:
              - base
-             - chilli
-             - nodogsplash
+             - opennds
            openwisp:
              url: "{{ default_openwisp2_url }}"
              shared_secret: Secretn1nuxB4s
